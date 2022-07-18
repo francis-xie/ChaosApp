@@ -1,0 +1,2 @@
+rootProject.name = "ChaosApp"
+include ':app'

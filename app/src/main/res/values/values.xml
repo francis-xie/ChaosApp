@@ -1,0 +1,823 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <attr format="color|reference" name="cpCancelTextColor"/>
+    <attr format="dimension|reference" name="cpCancelTextSize"/>
+    <attr format="reference" name="cpClearTextIcon"/>
+    <attr format="reference" name="cpEmptyIcon"/>
+    <attr format="dimension|reference" name="cpEmptyIconHeight"/>
+    <attr format="dimension|reference" name="cpEmptyIconWidth"/>
+    <attr format="string|reference" name="cpEmptyText"/>
+    <attr format="color|reference" name="cpEmptyTextColor"/>
+    <attr format="dimension|reference" name="cpEmptyTextSize"/>
+    <attr format="color|reference" name="cpGridItemBackground"/>
+    <attr format="reference" name="cpGridItemSpace"/>
+    <attr format="reference" name="cpIndexBarNormalTextColor"/>
+    <attr format="reference" name="cpIndexBarSelectedTextColor"/>
+    <attr format="reference" name="cpIndexBarTextSize"/>
+    <attr format="dimension|reference" name="cpListItemHeight"/>
+    <attr format="color|reference" name="cpListItemTextColor"/>
+    <attr format="dimension|reference" name="cpListItemTextSize"/>
+    <attr format="color|reference" name="cpOverlayBackground"/>
+    <attr format="dimension|reference" name="cpOverlayHeight"/>
+    <attr format="color|reference" name="cpOverlayTextColor"/>
+    <attr format="dimension|reference" name="cpOverlayTextSize"/>
+    <attr format="dimension|reference" name="cpOverlayWidth"/>
+    <attr format="reference" name="cpSearchCursorDrawable"/>
+    <attr format="string|reference" name="cpSearchHintText"/>
+    <attr format="color|reference" name="cpSearchHintTextColor"/>
+    <attr format="color|reference" name="cpSearchTextColor"/>
+    <attr format="dimension|reference" name="cpSearchTextSize"/>
+    <attr format="reference" name="cpSectionBackground"/>
+    <attr format="reference" name="cpSectionHeight"/>
+    <attr format="reference" name="cpSectionTextColor"/>
+    <attr format="reference" name="cpSectionTextSize"/>
+    <color name="cp_colorAccent">#299EE3</color>
+    <color name="cp_colorPrimary">#299EE3</color>
+    <color name="cp_colorPrimaryDark">#299EE3</color>
+    <color name="cp_color_gray">#999999</color>
+    <color name="cp_color_gray_dark">#80333333</color>
+    <color name="cp_color_gray_deep">#666666</color>
+    <color name="cp_color_gray_light">#CDCDCD</color>
+    <color name="cp_color_grid_item_bg">#F5F5F5</color>
+    <color name="cp_color_section_bg">#EDEDED</color>
+    <dimen name="cp_cancel_text_size">15sp</dimen>
+    <dimen name="cp_default_padding">16dp</dimen>
+    <dimen name="cp_empty_icon_height">56dp</dimen>
+    <dimen name="cp_empty_icon_width">56dp</dimen>
+    <dimen name="cp_empty_text_size">14sp</dimen>
+    <dimen name="cp_grid_item_padding">10dp</dimen>
+    <dimen name="cp_grid_item_space">16dp</dimen>
+    <dimen name="cp_index_bar_text_size">13sp</dimen>
+    <dimen name="cp_index_bar_width">36dp</dimen>
+    <dimen name="cp_list_item_height">50dp</dimen>
+    <dimen name="cp_list_item_text_size">15sp</dimen>
+    <dimen name="cp_overlay_height">60dp</dimen>
+    <dimen name="cp_overlay_text_size">28sp</dimen>
+    <dimen name="cp_overlay_width">60dp</dimen>
+    <dimen name="cp_search_text_size">15sp</dimen>
+    <dimen name="cp_section_height">32dp</dimen>
+    <dimen name="cp_section_text_size">15sp</dimen>
+    <string name="cp_cancel">取消</string>
+    <string name="cp_locate_failed">定位失败</string>
+    <string name="cp_locating">正在定位…</string>
+    <string name="cp_no_result">没有找到相关城市</string>
+    <string name="cp_search_hint_text">城市中文名或拼音</string>
+    <!--<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        &lt;!&ndash; Customize your theme here. &ndash;&gt;
+        <item name="colorPrimary">@color/cp_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/cp_colorPrimaryDark</item>
+        <item name="colorAccent">@color/cp_colorAccent</item>
+    </style>-->
+    <style name="CityPickerAnimation" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/cp_push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/cp_push_bottom_out</item>
+    </style>
+    <style name="CityPickerStyle" parent="AlertDialog.AppCompat">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+    <style name="CityPickerTheme" parent="AppTheme">
+        <item name="cpCancelTextSize">@dimen/cp_cancel_text_size</item>
+        <item name="cpCancelTextColor">@color/cp_color_gray</item>
+
+        <item name="cpClearTextIcon">@mipmap/cp_icon_clear_all</item>
+        <item name="cpSearchTextSize">@dimen/cp_search_text_size</item>
+        <item name="cpSearchTextColor">@color/cp_color_gray_dark</item>
+        <item name="cpSearchHintText">@string/cp_search_hint_text</item>
+        <item name="cpSearchHintTextColor">@color/cp_color_gray_light</item>
+        <item name="cpSearchCursorDrawable">@color/cp_color_gray_dark</item>
+
+        <item name="cpListItemHeight">@dimen/cp_list_item_height</item>
+        <item name="cpListItemTextSize">@dimen/cp_list_item_text_size</item>
+        <item name="cpListItemTextColor">@color/cp_color_gray_deep</item>
+
+        <item name="cpEmptyIcon">@mipmap/cp_icon_empty</item>
+        <item name="cpEmptyIconWidth">@dimen/cp_empty_icon_width</item>
+        <item name="cpEmptyIconHeight">@dimen/cp_empty_icon_height</item>
+        <item name="cpEmptyText">@string/cp_no_result</item>
+        <item name="cpEmptyTextSize">@dimen/cp_empty_text_size</item>
+        <item name="cpEmptyTextColor">@color/cp_color_gray_deep</item>
+
+        <item name="cpGridItemBackground">@drawable/cp_grid_item_bg</item>
+        <item name="cpGridItemSpace">@dimen/cp_grid_item_space</item>
+
+        <item name="cpSectionHeight">@dimen/cp_section_height</item>
+        <item name="cpSectionTextSize">@dimen/cp_section_text_size</item>
+        <item name="cpSectionTextColor">@color/cp_color_gray</item>
+        <item name="cpSectionBackground">@color/cp_color_section_bg</item>
+
+        <item name="cpIndexBarTextSize">@dimen/cp_index_bar_text_size</item>
+        <item name="cpIndexBarNormalTextColor">@color/cp_color_gray</item>
+        <item name="cpIndexBarSelectedTextColor">@color/cp_color_gray_dark</item>
+
+        <item name="cpOverlayWidth">@dimen/cp_overlay_width</item>
+        <item name="cpOverlayHeight">@dimen/cp_overlay_height</item>
+        <item name="cpOverlayTextSize">@dimen/cp_overlay_text_size</item>
+        <item name="cpOverlayTextColor">@android:color/white</item>
+        <item name="cpOverlayBackground">@drawable/cp_overlay_bg</item>
+    </style>
+
+    <!--jetified-refresh-layout-1.1.5-->
+    <attr format="enum" name="layout_srlSpinnerStyle">
+        <enum name="Translate" value="0"/><!--平行移动-->
+        <enum name="Scale" value="1"/><!--拉伸形变-->
+        <enum name="FixedBehind" value="2"/><!--固定在背后-->
+        <enum name="FixedFront" value="3"/><!--固定在前面-->
+        <enum name="MatchLayout" value="4"/><!--填满布局-->
+    </attr>
+    <attr format="color" name="srlAccentColor"/>
+    <attr format="enum" name="srlClassicsSpinnerStyle">
+        <enum name="Translate" value="0"/><!--平行移动-->
+        <enum name="Scale" value="1"/><!--拉伸形变-->
+        <enum name="FixedBehind" value="2"/><!--固定在背后-->
+    </attr>
+    <attr format="reference" name="srlDrawableArrow"/>
+    <attr format="dimension" name="srlDrawableArrowSize"/>
+    <attr format="dimension" name="srlDrawableMarginRight"/>
+    <attr format="reference" name="srlDrawableProgress"/>
+    <attr format="dimension" name="srlDrawableProgressSize"/>
+    <attr format="dimension" name="srlDrawableSize"/>
+    <attr format="boolean" name="srlEnableHorizontalDrag"/>
+    <attr format="integer" name="srlFinishDuration"/>
+    <attr format="color" name="srlPrimaryColor"/>
+    <attr format="dimension" name="srlTextSizeTime"/>
+    <attr format="dimension" name="srlTextSizeTitle"/>
+    <declare-styleable name="BallPulseFooter"><attr name="srlClassicsSpinnerStyle"/><attr format="color" name="srlAnimatingColor"/><attr format="color" name="srlNormalColor"/></declare-styleable>
+    <declare-styleable name="BezierRadarHeader"><attr name="srlPrimaryColor"/><attr name="srlAccentColor"/><attr name="srlEnableHorizontalDrag"/></declare-styleable>
+    <declare-styleable name="ClassicsFooter"><attr name="srlClassicsSpinnerStyle"/><attr name="srlPrimaryColor"/><attr name="srlAccentColor"/><attr name="srlFinishDuration"/><attr name="srlTextSizeTitle"/><attr name="srlDrawableArrow"/><attr name="srlDrawableProgress"/><attr name="srlDrawableMarginRight"/><attr name="srlDrawableSize"/><attr name="srlDrawableArrowSize"/><attr name="srlDrawableProgressSize"/></declare-styleable>
+    <declare-styleable name="ClassicsHeader"><attr name="srlClassicsSpinnerStyle"/><attr name="srlPrimaryColor"/><attr name="srlAccentColor"/><attr name="srlFinishDuration"/><attr name="srlDrawableArrow"/><attr name="srlDrawableProgress"/><attr name="srlDrawableMarginRight"/><attr name="srlDrawableSize"/><attr name="srlDrawableArrowSize"/><attr name="srlDrawableProgressSize"/><attr name="srlTextSizeTitle"/><attr name="srlTextSizeTime"/><attr format="dimension" name="srlTextTimeMarginTop"/><attr format="boolean" name="srlEnableLastTime"/></declare-styleable>
+    <declare-styleable name="SmartRefreshLayout"><attr name="srlPrimaryColor"/><attr name="srlAccentColor"/><attr format="integer" name="srlReboundDuration"/><attr format="dimension" name="srlHeaderHeight"/><attr format="dimension" name="srlFooterHeight"/><attr format="dimension" name="srlHeaderInsetStart"/><attr format="dimension" name="srlFooterInsetStart"/><attr format="float" name="srlDragRate"/><attr format="float" name="srlHeaderMaxDragRate"/><attr format="float" name="srlFooterMaxDragRate"/><attr format="float" name="srlHeaderTriggerRate"/><attr format="float" name="srlFooterTriggerRate"/><attr format="boolean" name="srlEnableRefresh"/><attr format="boolean" name="srlEnableLoadMore"/><attr format="boolean" name="srlEnableHeaderTranslationContent"/><attr format="boolean" name="srlEnableFooterTranslationContent"/><attr format="reference" name="srlHeaderTranslationViewId"/><attr format="reference" name="srlFooterTranslationViewId"/><attr format="boolean" name="srlEnablePreviewInEditMode"/><attr format="boolean" name="srlEnableAutoLoadMore"/><attr format="boolean" name="srlEnableOverScrollBounce"/><attr format="boolean" name="srlEnablePureScrollMode"/><attr format="boolean" name="srlEnableNestedScrolling"/><attr format="boolean" name="srlEnableScrollContentWhenLoaded"/><attr format="boolean" name="srlEnableScrollContentWhenRefreshed"/><attr format="boolean" name="srlEnableLoadMoreWhenContentNotFull"/><attr format="boolean" name="srlEnableFooterFollowWhenLoadFinished"/><attr format="boolean" name="srlEnableFooterFollowWhenNoMoreData"/><attr format="boolean" name="srlEnableClipHeaderWhenFixedBehind"/><attr format="boolean" name="srlEnableClipFooterWhenFixedBehind"/><attr format="boolean" name="srlEnableOverScrollDrag"/><attr format="boolean" name="srlDisableContentWhenRefresh"/><attr format="boolean" name="srlDisableContentWhenLoading"/><attr format="reference" name="srlFixedHeaderViewId"/><attr format="reference" name="srlFixedFooterViewId"/></declare-styleable>
+    <declare-styleable name="SmartRefreshLayout_Layout"><attr name="layout_srlSpinnerStyle"/><attr format="color" name="layout_srlBackgroundColor"/></declare-styleable>
+    <declare-styleable name="TwoLevelHeader"><attr format="float" name="srlMaxRage"/><attr format="float" name="srlFloorRage"/><attr format="float" name="srlRefreshRage"/><attr format="integer" name="srlFloorDuration"/><attr format="boolean" name="srlEnableTwoLevel"/><attr format="boolean" name="srlEnablePullToCloseTwoLevel"/></declare-styleable>
+    <string formatted="false" name="srl_component_falsify">%s falsify area,\n Represents the height[%.1fdp] of drag at run time,\n It does not show anything.</string>
+    <string name="srl_content_empty">The content view in SmartRefreshLayout is empty. Do you forget to add it in xml layout file?</string>
+    <string name="srl_footer_failed">Load Failed</string>
+    <string name="srl_footer_finish">Load Success</string>
+    <string name="srl_footer_loading">Loading…</string>
+    <string name="srl_footer_nothing">No More Data</string>
+    <string name="srl_footer_pulling">Pull Up To Load More</string>
+    <string name="srl_footer_refreshing">Wait For Refreshing…</string>
+    <string name="srl_footer_release">Release To Load More</string>
+    <string name="srl_header_failed">Refresh Failed</string>
+    <string name="srl_header_finish">Refresh Success</string>
+    <string name="srl_header_loading">Loading…</string>
+    <string name="srl_header_pulling">Pull Down To Refresh</string>
+    <string name="srl_header_refreshing">Wait For Refreshing…</string>
+    <string name="srl_header_release">Release To Refresh</string>
+    <string name="srl_header_secondary">Release To Second Floor</string>
+    <string name="srl_header_update">\'Last Update\' M-d HH:mm</string>
+
+    <!--jetified-XQRCode-1.1.0-->
+    <attr format="reference" name="ViewfinderViewStyle"/>
+    <color name="default_inner_corner_color">#0DC2FE</color>
+    <color name="default_mask_color">#60000000</color>
+    <color name="default_result_color">#B0000000</color>
+    <color name="default_result_point_color">#C0FFFF00</color>
+    <dimen name="default_inner_corner_length">32dp</dimen>
+    <dimen name="default_inner_corner_width">6dp</dimen>
+    <dimen name="default_inner_scan_speed">5dp</dimen>
+    <item name="auto_focus" type="id"/>
+    <item name="decode" type="id"/>
+    <item name="decode_failed" type="id"/>
+    <item name="decode_succeeded" type="id"/>
+    <item name="encode_failed" type="id"/>
+    <item name="encode_succeeded" type="id"/>
+    <item name="launch_product_query" type="id"/>
+    <item name="quit" type="id"/>
+    <item name="restart_preview" type="id"/>
+    <item name="return_scan_result" type="id"/>
+    <item name="search_book_contents_failed" type="id"/>
+    <item name="search_book_contents_succeeded" type="id"/>
+    <string name="xqrcode_not_get_permission">照相机打开失败，请检查权限是否未获取！</string>
+    <string name="xqrcode_pay_attention">注意</string>
+    <string name="xqrcode_submit">确定</string>
+    <style name="ViewfinderView">
+        <item name="inner_corner_color">@color/default_inner_corner_color</item>
+        <item name="inner_corner_length">@dimen/default_inner_corner_length</item>
+        <item name="inner_corner_width">@dimen/default_inner_corner_width</item>
+        <item name="inner_scan_bitmap">@drawable/xqrcode_ic_scan_light</item>
+        <item name="inner_scan_speed">@dimen/default_inner_scan_speed</item>
+        <item name="inner_scan_animation_interval">25</item>
+        <item name="inner_scan_isCircle">true</item>
+        <item name="inner_result_color">@color/default_result_color</item>
+        <item name="inner_result_point_color">@color/default_result_point_color</item>
+        <item name="inner_mask_color">@color/default_mask_color</item>
+    </style>
+    <style name="XQRCodeTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="ViewfinderViewStyle">@style/ViewfinderView</item>
+    </style>
+    <declare-styleable name="ViewfinderView">
+        <!-- 扫描框的宽度，默认为屏幕宽度的3／4 -->
+        <attr format="dimension" name="inner_width"/>
+        <!-- 扫描框的高度，默认为屏幕宽度的3／4 -->
+        <attr format="dimension" name="inner_height"/>
+        <!-- 扫描框距离顶部的距离，默认居中-->
+        <attr format="dimension" name="inner_marginTop"/>
+        <!-- 扫描框四角的颜色，默认为#0DC2FE-->
+        <attr format="color" name="inner_corner_color"/>
+        <!-- 扫描框四角的长度，默认为32dp-->
+        <attr format="dimension" name="inner_corner_length"/>
+        <!-- 扫描框四角的宽度，默认为6dp-->
+        <attr format="dimension" name="inner_corner_width"/>
+        <!-- 扫描控件图资源，默认为R.drawable.xqrcode_ic_scan_light-->
+        <attr format="reference" name="inner_scan_bitmap"/>
+        <!-- 扫描控件图资源的色调，默认是-1-->
+        <attr format="color" name="inner_scan_bitmap_tint"/>
+        <!-- 扫描速度，默认为5dp-->
+        <attr format="dimension" name="inner_scan_speed"/>
+        <!-- 扫描动画绘制的间期，单位是ms， 默认是25ms-->
+        <attr format="integer" name="inner_scan_animation_interval"/>
+        <!-- 小圆点是否展示，默认为true-->
+        <attr format="boolean" name="inner_scan_isCircle"/>
+        <attr format="color" name="inner_result_color"/>
+        <attr format="color" name="inner_result_point_color"/>
+        <attr format="color" name="inner_mask_color"/>
+    </declare-styleable>
+
+    <!--jetified-picture-core-1.0.5-->
+    <attr format="reference|color" name="picture_ac_preview_bottom_bg"/>
+    <attr format="reference|color" name="picture_ac_preview_complete_textColor"/>
+    <attr format="reference|color" name="picture_ac_preview_title_bg"/>
+    <attr format="reference|color" name="picture_ac_preview_title_textColor"/>
+    <attr format="dimension" name="picture_ac_preview_title_textSize"/>
+    <attr format="boolean" name="picture_ac_preview_title_text_bold"/>
+    <attr format="reference" name="picture_arrow_down_icon"/>
+    <attr format="reference" name="picture_arrow_up_icon"/>
+    <attr format="reference|color" name="picture_bottom_bg"/>
+    <attr format="reference" name="picture_checked_style"/>
+    <attr format="reference|color" name="picture_complete_textColor"/>
+    <attr format="reference|color" name="picture_crop_status_color"/>
+    <attr format="reference|color" name="picture_crop_title_color"/>
+    <attr format="reference|color" name="picture_crop_toolbar_bg"/>
+    <attr format="reference" name="picture_folder_checked_dot"/>
+    <attr format="reference" name="picture_leftBack_icon"/>
+    <attr format="reference" name="picture_num_style"/>
+    <attr format="reference" name="picture_preview_leftBack_icon"/>
+    <attr format="reference|color" name="picture_preview_textColor"/>
+    <attr format="reference|color" name="picture_right_textColor"/>
+    <attr format="dimension" name="picture_right_textSize"/>
+    <attr format="boolean" name="picture_right_text_bold"/>
+    <attr format="boolean" name="picture_statusFontColor"/>
+    <attr format="reference|color" name="picture_status_color"/>
+    <attr format="boolean" name="picture_style_checkNumMode"/>
+    <attr format="boolean" name="picture_style_numComplete"/>
+    <attr format="dimension" name="picture_title_action_padding"/>
+    <attr format="reference|color" name="picture_title_textColor"/>
+    <attr format="dimension" name="picture_title_textSize"/>
+    <attr format="boolean" name="picture_title_text_bold"/>
+    <color name="picture_bar_grey">#393a3e</color>
+    <color name="picture_bar_grey_90">#dd393a3e</color>
+    <color name="picture_black">#000000</color>
+    <color name="picture_blue">#7D7DFF</color>
+    <color name="picture_color_4d">#4d4d4d</color>
+    <color name="picture_color_53">#53575e</color>
+    <color name="picture_color_69">#999999</color>
+    <color name="picture_color_f0">#F0F0F0</color>
+    <color name="picture_color_f2">#F2F2F2</color>
+    <color name="picture_color_fa">#FAFAFA</color>
+    <color name="picture_color_orange">#E0FF6100</color>
+    <color name="picture_image_overlay_false">#20000000</color>
+    <color name="picture_image_overlay_true">#80000000</color>
+    <color name="picture_line_color">#EEEEEE</color>
+    <color name="picture_tab_color_false">#9b9b9b</color>
+    <color name="picture_tab_color_true">#FA632D</color>
+    <color name="picture_transparent">#00000000</color>
+    <color name="picture_transparent_db">#E0DBDBDB</color>
+    <color name="picture_transparent_white">#F0FFFFFF</color>
+    <color name="picture_white">#FFFFFF</color>
+    <declare-styleable name="PicSubSamplingScaleImageView">
+        <attr format="reference" name="pic_src"/>
+        <attr format="string" name="pic_assetName"/>
+        <attr format="boolean" name="pic_panEnabled"/>
+        <attr format="boolean" name="pic_zoomEnabled"/>
+        <attr format="boolean" name="pic_quickScaleEnabled"/>
+        <attr format="color" name="pic_tileBackgroundColor"/>
+    </declare-styleable>
+    <dimen name="picture_margin_top">8dp</dimen>
+    <string name="picture_all_audio">所有音频</string>
+    <string name="picture_audio">获取系统录音权限被拒绝</string>
+    <string name="picture_audio_empty">你可以使用系统录音录制音频</string>
+    <string name="picture_audio_error">音频已损坏</string>
+    <string name="picture_camera">获取系统相机权限被拒绝</string>
+    <string name="picture_camera_roll">相机胶卷</string>
+    <string name="picture_cancel">取消</string>
+    <string name="picture_completed">已完成</string>
+    <string name="picture_confirm">确定</string>
+    <string name="picture_done">完成</string>
+    <string name="picture_done_front_num">%1$d/%2$d 完成</string>
+    <string name="picture_empty">你可以使用相机拍摄照片或视频</string>
+    <string name="picture_empty_audio_title">无音频文件\n</string>
+    <string name="picture_empty_title">无视频或照片\n</string>
+    <string name="picture_error">图片已损坏</string>
+    <string name="picture_gif_tag">动图</string>
+    <string name="picture_jurisdiction">读取内存卡权限被拒绝</string>
+    <string name="picture_long_chart">长图</string>
+    <string name="picture_message_max_num">你最多可以选择%1$s张图片</string>
+    <string name="picture_message_video_max_num">你最多可以选择%1$s个视频</string>
+    <string name="picture_min_img_num">图片最低选择不能少于%1$s张</string>
+    <string name="picture_min_video_num">视频最低选择不能少于%1$s个</string>
+    <string name="picture_pause_audio">暂停</string>
+    <string name="picture_photograph">拍照</string>
+    <string name="picture_play_audio">播放</string>
+    <string name="picture_please">请稍候...</string>
+    <string name="picture_please_select">请选择</string>
+    <string name="picture_preview">预览</string>
+    <string name="picture_prompt">提示</string>
+    <string name="picture_prompt_content">是否保存图片至手机？</string>
+    <string name="picture_quit_audio">退出</string>
+    <string name="picture_record_video">录视频</string>
+    <string name="picture_rule">不能同时选择图片或视频</string>
+    <string name="picture_save_error">图片保存失败</string>
+    <string name="picture_save_success">图片保存成功至</string>
+    <string name="picture_stop_audio">停止</string>
+    <string name="picture_take_picture">拍摄</string>
+    <string name="picture_tape">录音</string>
+    <string name="picture_video_error">视频已损坏</string>
+    <string name="picture_video_toast">视频不可预览</string>
+    <string name="picture_warning">暂无媒体文件！</string>
+    <style name="PictureAlertDialog" parent="android:Theme.Dialog">
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowBackground">@color/picture_transparent</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:backgroundDimAmount">0.4</item>
+    </style>
+    <style name="PictureAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/picture_bar_grey</item>
+        <item name="colorPrimaryDark">@color/picture_bar_grey</item>
+        <item name="colorAccent">@color/picture_bar_grey</item>
+    </style>
+    <style name="PictureThemeDialog" parent="@android:style/Theme.Dialog">
+        <!-- 边框 -->
+        <item name="android:windowFrame">@android:color/transparent</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">false</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+
+        <!-- 自己想要的背景 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+    <style name="Picture_DialogWindowStyle">
+        <item name="android:windowEnterAnimation">@anim/pic_modal_in</item>
+        <item name="android:windowExitAnimation">@anim/pic_modal_out</item>
+    </style>
+    <style name="Picture_Dialog_Audio_StyleAnim">
+        <item name="android:windowEnterAnimation">@anim/pic_a5</item>
+        <item name="android:windowExitAnimation">@anim/pic_a3</item>
+    </style>
+    <style name="Picture_WindowStyle">
+        <item name="android:windowEnterAnimation">@anim/pic_fade_in</item>
+        <item name="android:windowExitAnimation">@anim/pic_fade_out</item>
+    </style>
+    <style name="picture.default.style" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <!--标题栏背景色-->
+        <item name="colorPrimary">@color/picture_bar_grey</item>
+        <!--状态栏背景色-->
+        <item name="colorPrimaryDark">@color/picture_bar_grey</item>
+        <!--是否改变图片列表界面状态栏字体颜色为黑色-->
+        <item name="picture_statusFontColor">false</item>
+        <!--返回键图标-->
+        <item name="picture_leftBack_icon">@drawable/pic_ic_back</item>
+        <!--title图标文字的padding-->
+        <item name="picture_title_action_padding">10dp</item>
+        <!--标题下拉箭头-->
+        <item name="picture_arrow_down_icon">@drawable/pic_arrow_down</item>
+        <!--标题上拉箭头-->
+        <item name="picture_arrow_up_icon">@drawable/pic_arrow_up</item>
+        <!--标题文字颜色-->
+        <item name="picture_title_textColor">@color/picture_white</item>
+        <!--标题栏右边文字-->
+        <item name="picture_right_textColor">@color/picture_white</item>
+        <!--标题文字大小-->
+        <item name="picture_title_textSize">17sp</item>
+        <!--标题栏右边文字大小-->
+        <item name="picture_right_textSize">14sp</item>
+        <!--标题文字是否加粗-->
+        <item name="picture_title_text_bold">false</item>
+        <!--标题栏右边文字是否加粗-->
+        <item name="picture_right_text_bold">false</item>
+        <!--图片列表勾选样式-->
+        <item name="picture_checked_style">@drawable/pic_selector_checkbox</item>
+        <!--开启图片列表勾选数字模式-->
+        <item name="picture_style_checkNumMode">false</item>
+        <!--选择图片样式0/9-->
+        <item name="picture_style_numComplete">false</item>
+        <!--图片列表底部背景色-->
+        <item name="picture_bottom_bg">@color/picture_color_fa</item>
+        <!--图片列表预览文字颜色-->
+        <item name="picture_preview_textColor">@color/pic_list_text_color</item>
+        <!--图片列表已完成文字颜色-->
+        <item name="picture_complete_textColor">@color/pic_list_text_color</item>
+        <!--图片已选数量圆点背景色-->
+        <item name="picture_num_style">@drawable/pic_num_oval</item>
+        <!--预览界面标题文字颜色-->
+        <item name="picture_ac_preview_title_textColor">@color/picture_white</item>
+        <!--预览界面标题文字大小-->
+        <item name="picture_ac_preview_title_textSize">18sp</item>
+        <!--预览界面标题文字是否加粗-->
+        <item name="picture_ac_preview_title_text_bold">false</item>
+        <!--预览界面已完成文字颜色-->
+        <item name="picture_ac_preview_complete_textColor">@color/pic_preview_text_color</item>
+        <!--预览界面标题栏背景色-->
+        <item name="picture_ac_preview_title_bg">@color/picture_bar_grey</item>
+        <!--预览界面底部背景色-->
+        <item name="picture_ac_preview_bottom_bg">@color/picture_bar_grey_90</item>
+        <!--预览界面返回箭头-->
+        <item name="picture_preview_leftBack_icon">@drawable/pic_ic_back</item>
+        <!--裁剪页面标题背景色-->
+        <item name="picture_crop_toolbar_bg">@color/picture_bar_grey</item>
+        <!--裁剪页面状态栏颜色-->
+        <item name="picture_crop_status_color">@color/picture_bar_grey</item>
+        <!--裁剪页面标题文字颜色-->
+        <item name="picture_crop_title_color">@color/picture_white</item>
+        <!--相册文件夹列表选中图标-->
+        <item name="picture_folder_checked_dot">@drawable/pic_orange_oval</item>
+    </style>
+
+    <!--jetified-CameraView-1.0.3-->
+    <style name="Widget.CameraView" parent="android:Widget">
+        <item name="android:adjustViewBounds">false</item>
+        <item name="cv_facing">back</item>
+        <item name="cv_aspectRatio">4:3</item>
+        <item name="cv_autoFocus">true</item>
+        <item name="cv_flash">auto</item>
+    </style>
+    <declare-styleable name="CameraView">
+        <!--
+          Set this to true if you want the CameraView to adjust its bounds to preserve the aspect
+          ratio of its camera preview.
+        -->
+        <attr name="android:adjustViewBounds"/>
+        <!-- Direction the camera faces relative to device screen. -->
+        <attr format="enum" name="cv_facing">
+            <!-- The camera device faces the opposite direction as the device's screen. -->
+            <enum name="back" value="0"/>
+            <!-- The camera device faces the same direction as the device's screen. -->
+            <enum name="front" value="1"/>
+        </attr>
+        <!-- Aspect ratio of camera preview and pictures. -->
+        <attr format="string" name="cv_aspectRatio"/>
+        <!-- Continuous auto focus mode. -->
+        <attr format="boolean" name="cv_autoFocus"/>
+        <!-- The flash mode. -->
+        <attr format="enum" name="cv_flash">
+            <!-- Flash will not be fired. -->
+            <enum name="off" value="0"/>
+            <!--
+              Flash will always be fired during snapshot.
+              The flash may also be fired during preview or auto-focus depending on the driver.
+            -->
+            <enum name="on" value="1"/>
+            <!--
+              Constant emission of light during preview, auto-focus and snapshot.
+              This can also be used for video recording.
+            -->
+            <enum name="torch" value="2"/>
+            <!--
+              Flash will be fired automatically when required.
+              The flash may be fired during preview, auto-focus, or snapshot depending on the
+              driver.
+            -->
+            <enum name="auto" value="3"/>
+            <!--
+              Flash will be fired in red-eye reduction mode.
+            -->
+            <enum name="redEye" value="4"/>
+        </attr>
+    </declare-styleable>
+
+    <!--jetified-xpage-lib-3.2.0-->
+    <attr format="reference" name="XPageTitleBarStyle"/>
+    <attr format="dimension" name="xpage_actionbar_action_padding"/>
+    <attr format="dimension" name="xpage_actionbar_action_text_size"/>
+    <attr format="reference" name="xpage_actionbar_background"/>
+    <attr format="color" name="xpage_actionbar_color"/>
+    <attr format="dimension" name="xpage_actionbar_height"/>
+    <attr format="boolean" name="xpage_actionbar_immersive"/>
+    <attr format="reference" name="xpage_actionbar_navigation_back"/>
+    <attr format="dimension" name="xpage_actionbar_side_text_padding"/>
+    <attr format="dimension" name="xpage_actionbar_sub_text_size"/>
+    <attr format="color" name="xpage_actionbar_text_color"/>
+    <attr format="dimension" name="xpage_actionbar_title_text_size"/>
+    <color name="xpage_config_color_transparent">#00000000</color>
+    <color name="xpage_default_actionbar_color">#299EE3</color>
+    <color name="xpage_default_actionbar_text_color">#FFFFFF</color>
+    <dimen name="xpage_default_action_padding">5dp</dimen>
+    <dimen name="xpage_default_action_text_size">15sp</dimen>
+    <dimen name="xpage_default_actionbar_height">52dp</dimen>
+    <dimen name="xpage_default_sidetext_padding">14dp</dimen>
+    <dimen name="xpage_default_sub_text_size">12sp</dimen>
+    <dimen name="xpage_default_title_text_size">18sp</dimen>
+    <item name="fragment_container" type="id"/>
+    <style name="XPageTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="XPageTitleBarStyle">@style/XPageTitleBar</item>
+    </style>
+    <style name="XPageTitleBar">
+        <item name="tb_barHeight">?attr/xpage_actionbar_height</item>
+        <item name="tb_immersive">false</item>
+        <item name="tb_actionPadding">?attr/xpage_actionbar_action_padding</item>
+        <item name="tb_sideTextPadding">?attr/xpage_actionbar_side_text_padding</item>
+        <item name="tb_sideTextColor">@color/xpage_default_actionbar_text_color</item>
+        <item name="tb_titleTextColor">@color/xpage_default_actionbar_text_color</item>
+        <item name="tb_subTitleTextColor">@color/xpage_default_actionbar_text_color</item>
+        <item name="tb_actionTextColor">@color/xpage_default_actionbar_text_color</item>
+        <item name="tb_centerGravity">center</item>
+        <item name="tb_sideTextSize">?attr/xpage_actionbar_action_text_size</item>
+        <item name="tb_titleTextSize">?attr/xpage_actionbar_title_text_size</item>
+        <item name="tb_subTitleTextSize">?attr/xpage_actionbar_sub_text_size</item>
+        <item name="tb_actionTextSize">?attr/xpage_actionbar_action_text_size</item>
+        <item name="tb_dividerColor">@color/xpage_config_color_transparent</item>
+        <item name="tb_dividerHeight">1dp</item>
+        <item name="tb_useThemeColor">true</item>
+    </style>
+    <!--<declare-styleable name="TitleBar">
+        &lt;!&ndash;标题栏的高度，默认52dp&ndash;&gt;
+        <attr format="dimension" name="tb_barHeight"/>
+        &lt;!&ndash;是否是沉浸式标题栏，默认是false&ndash;&gt;
+        <attr format="boolean" name="tb_immersive"/>
+        &lt;!&ndash;左右图标和文字的padding&ndash;&gt;
+        <attr format="dimension" name="tb_actionPadding"/>
+        &lt;!&ndash;标题栏两侧控件的padding&ndash;&gt;
+        <attr format="dimension" name="tb_sideTextPadding"/>
+        &lt;!&ndash;标题栏左侧文字的颜色&ndash;&gt;
+        <attr format="color" name="tb_sideTextColor"/>
+        &lt;!&ndash;标题栏标题文字的颜色&ndash;&gt;
+        <attr format="color" name="tb_titleTextColor"/>
+        &lt;!&ndash;标题栏副标题文字的颜色&ndash;&gt;
+        <attr format="color" name="tb_subTitleTextColor"/>
+        &lt;!&ndash;-标题栏右侧文字的颜色&ndash;&gt;
+        <attr format="color" name="tb_actionTextColor"/>
+        &lt;!&ndash;中间title的对齐方式&ndash;&gt;
+        <attr format="enum" name="tb_centerGravity">
+            <enum name="center" value="0"/>
+            <enum name="left" value="1"/>
+            <enum name="right" value="2"/>
+        </attr>
+        &lt;!&ndash;标题栏左侧文字的大小&ndash;&gt;
+        <attr format="dimension" name="tb_sideTextSize"/>
+        &lt;!&ndash;标题栏标题文字的大小&ndash;&gt;
+        <attr format="dimension" name="tb_titleTextSize"/>
+        &lt;!&ndash;标题栏副标题文字的大小&ndash;&gt;
+        <attr format="dimension" name="tb_subTitleTextSize"/>
+        &lt;!&ndash;标题栏右侧文字的大小&ndash;&gt;
+        <attr format="dimension" name="tb_actionTextSize"/>
+        &lt;!&ndash;文字的内容以及图标内容&ndash;&gt;
+        <attr format="reference" name="tb_leftImageResource"/>
+        &lt;!&ndash;标题栏左侧的文字&ndash;&gt;
+        <attr format="string" name="tb_leftText"/>
+        &lt;!&ndash;标题栏标题的文字&ndash;&gt;
+        <attr format="string" name="tb_titleText"/>
+        &lt;!&ndash;标题栏副标题的文字&ndash;&gt;
+        <attr format="string" name="tb_subTitleText"/>
+        &lt;!&ndash;标题栏分割线的颜色&ndash;&gt;
+        <attr format="color" name="tb_dividerColor"/>
+        &lt;!&ndash;标题栏分割线的高度&ndash;&gt;
+        <attr format="dimension" name="tb_dividerHeight"/>
+        &lt;!&ndash;标题栏背景色是否使用主题颜色，默认是true&ndash;&gt;
+        <attr format="boolean" name="tb_useThemeColor"/>
+    </declare-styleable>-->
+
+    <!--jetified-agentweb-core-1.0.0-->
+    <color name="black">#000000</color>
+    <color name="select_color">#2e2e32</color>
+    <color name="white">#ffffff</color>
+    <item name="agentweb_webview_id" type="id"/>
+    <item name="mainframe_error_container_id" type="id"/>
+    <item name="mainframe_error_viewsub_id" type="id"/>
+    <item name="web_parent_layout_id" type="id"/>
+    <string name="agentweb_camera">Camera</string>
+    <string name="agentweb_cancel">Cancel</string>
+    <string name="agentweb_click_open">Tap to continue</string>
+    <string name="agentweb_coming_soon_download">Coming soon to download the file</string>
+    <string name="agentweb_current_downloading_progress">Downloading:%s</string>
+    <string name="agentweb_default_page_error">error~</string>
+    <string name="agentweb_download">Download</string>
+    <string name="agentweb_download_fail">Download failed!</string>
+    <string name="agentweb_download_task_has_been_exist">The task already exists, do not repeat click to download!</string>
+    <string name="agentweb_file_chooser">Files</string>
+    <string name="agentweb_file_download">Download</string>
+    <string name="agentweb_honeycomblow">Wi-Fi disconnected. Continue the download via mobile data network?</string>
+    <string name="agentweb_leave">Go away</string>
+    <string name="agentweb_leave_app_and_go_other_page">leaving %s and opening another app?</string>
+    <string name="agentweb_loading">Loading ...</string>
+    <string name="agentweb_max_file_length_limit">The selected file can not be larger than %s MB</string>
+    <string name="agentweb_tips">Note</string>
+    <string name="agentweb_trickter">You have a new notice</string>
+    <style name="actionActivity" parent="@android:style/Theme.Translucent.NoTitleBar">
+        <item name="android:statusBarColor" ns1:targetApi="lollipop">@android:color/transparent</item>
+    </style>
+
+    <!--jetified-XUpdate-2.1.1-->
+    <color name="xupdate_button_text_color">#FFFFFFFF</color>
+    <color name="xupdate_close_line_color">#D8D8D8</color>
+    <color name="xupdate_content_text_color">#FF666666</color>
+    <color name="xupdate_default_bg_color">#FFFFFFFF</color>
+    <color name="xupdate_default_theme_color">#FFE94339</color>
+    <color name="xupdate_title_text_color">#FF000000</color>
+    <dimen name="xupdate_bg_app_info_radius">3dp</dimen>
+    <dimen name="xupdate_button_min_height">40dp</dimen>
+    <dimen name="xupdate_button_min_height_mini">35dp</dimen>
+    <dimen name="xupdate_button_text_size">15sp</dimen>
+    <dimen name="xupdate_button_text_size_mini">13sp</dimen>
+    <dimen name="xupdate_close_icon_size">30dp</dimen>
+    <dimen name="xupdate_close_line_height">50dp</dimen>
+    <dimen name="xupdate_close_line_width">1dp</dimen>
+    <dimen name="xupdate_common_padding">10dp</dimen>
+    <dimen name="xupdate_content_line_spacing_extra_size">5dp</dimen>
+    <dimen name="xupdate_content_padding">16dp</dimen>
+    <dimen name="xupdate_content_text_size">14sp</dimen>
+    <dimen name="xupdate_title_text_size">15sp</dimen>
+    <string name="xupdate_connecting_service">Connecting the server…</string>
+    <string name="xupdate_download_complete">Download to complete, please click Install</string>
+    <string name="xupdate_error_check_apk_cache_dir_empty">Update failed: apk download cache directory is empty!</string>
+    <string name="xupdate_error_check_ignored_version">Update failed: ignored version!</string>
+    <string name="xupdate_error_check_json_empty">Query failed: Json is empty!</string>
+    <string name="xupdate_error_check_net_request">Query failed: network request error!</string>
+    <string name="xupdate_error_check_no_network">Query failed: no network!</string>
+    <string name="xupdate_error_check_no_new_version">It\'s the latest version!</string>
+    <string name="xupdate_error_check_no_wifi">Query failed: no WIFI!</string>
+    <string name="xupdate_error_check_parse">Query failure: Json parsing error!</string>
+    <string name="xupdate_error_check_updating">The program is being updated!</string>
+    <string name="xupdate_error_download_failed">Download failed!</string>
+    <string name="xupdate_error_download_permission_denied">Unable to download: storage permission request rejected!</string>
+    <string name="xupdate_error_install_failed">Failed to install APK!</string>
+    <string name="xupdate_error_prompt_activity_destroy">Failed: the activity has been destroyed!</string>
+    <string name="xupdate_error_prompt_unknown">Failed: unknown error!</string>
+    <string name="xupdate_lab_background_update">Background Upgrade</string>
+    <string name="xupdate_lab_downloading">Downloading：</string>
+    <string name="xupdate_lab_ignore">Ignore</string>
+    <string name="xupdate_lab_install">Install</string>
+    <string name="xupdate_lab_new_version_size">New version size:</string>
+    <string name="xupdate_lab_ready_update">Whether to upgrade to version %s？</string>
+    <string name="xupdate_lab_update">Upgrade</string>
+    <string name="xupdate_start_download">Start download</string>
+    <string name="xupdate_tip_download_url_error">New version download path error</string>
+    <string name="xupdate_tip_permissions_reject">Please authorize access to storage space permissions, otherwise App can not be updated!</string>
+    <style name="XUpdate_Dialog" parent="@android:style/Theme.Dialog">
+        <!-- Dialog的windowFrame框为无 -->
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <!-- 是否漂现在activity上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否半透明 -->
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowSoftInputMode">adjustPan</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowEnterAnimation">@anim/xupdate_app_window_in</item>
+        <item name="android:windowExitAnimation">@anim/xupdate_app_window_out</item>
+    </style>
+    <style name="XUpdate_DialogTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--设置dialog的背景，此处为系统给定的透明值-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--Dialog的windowFrame框为无-->
+        <item name="android:windowFrame">@null</item>
+        <!--无标题-->
+        <item name="android:windowNoTitle">true</item>　　　　　
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否半透明-->
+        <item name="android:windowIsTranslucent">true</item>
+        <!--是否有覆盖-->
+        <item name="android:windowContentOverlay">@null</item>
+        <!--设置Activity出现方式-->
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowEnterAnimation">@anim/xupdate_app_window_in</item>
+        <item name="android:windowExitAnimation">@anim/xupdate_app_window_out</item>
+        <!--背景是否模糊显示-->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+    <style name="XUpdate_Fragment_Dialog" parent="android:style/Theme.Dialog">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name="android:windowEnterAnimation">@anim/xupdate_app_window_in</item>
+        <item name="android:windowExitAnimation">@anim/xupdate_app_window_out</item>
+    </style>
+    <style name="XUpdate_ProgressBar_Red">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="xnpb_max">100</item>
+        <item name="xnpb_current">0</item>
+        <item name="xnpb_unreached_color">#CCCCCC</item>
+        <item name="xnpb_reached_color">#e94339</item>
+        <item name="xnpb_text_size">12sp</item>
+        <item name="xnpb_text_color">#e94339</item>
+        <item name="xnpb_reached_bar_height">4dp</item>
+        <item name="xnpb_unreached_bar_height">3dp</item>
+    </style>
+    <declare-styleable name="XNumberProgressBar">
+        <attr format="integer" name="xnpb_current"/>
+        <attr format="integer" name="xnpb_max"/>
+
+        <attr format="color" name="xnpb_unreached_color"/>
+        <attr format="color" name="xnpb_reached_color"/>
+
+        <attr format="dimension" name="xnpb_reached_bar_height"/>
+        <attr format="dimension" name="xnpb_unreached_bar_height"/>
+
+        <attr format="dimension" name="xnpb_text_size"/>
+        <attr format="color" name="xnpb_text_color"/>
+
+        <attr format="dimension" name="xnpb_text_offset"/>
+
+        <attr format="enum" name="xnpb_text_visibility">
+            <enum name="visible" value="0"/>
+            <enum name="invisible" value="1"/>
+        </attr>
+    </declare-styleable>
+
+    <!--jetified-JPTabBar-1.0.1-->
+    <declare-styleable name="JPTabBar">
+        <attr format="reference|color" name="tab_normalColor"/>
+        <attr format="reference|color" name="tab_selectColor"/>
+        <attr format="reference|color" name="tab_selectBg"/>
+        <attr format="dimension|reference" name="tab_textSize"/>
+        <attr format="string" name="tab_typeface"/>
+        <attr format="dimension|reference" name="tab_iconSize"/>
+        <attr format="dimension|reference" name="tab_iconPadding"/>
+        <attr format="boolean" name="tab_iconFilter"/>
+        <attr format="dimension|reference" name="tab_margin"/>
+        <attr format="enum" name="tab_animate">
+            <enum name="Flip" value="0"/>
+            <enum name="Rotate" value="1"/>
+            <enum name="Scale" value="2"/>
+            <enum name="Jump" value="3"/>
+            <enum name="Scale2" value="4"/>
+            <enum name="None" value="5"/>
+        </attr>
+        <attr format="boolean" name="tab_pressAnimateEnable"/>
+        <attr format="boolean" name="tab_pageAnimateEnable"/>
+        <attr format="boolean" name="tab_gradientEnable"/>
+        <attr format="dimension|reference" name="tab_middleBottomDis"/>
+        <attr format="reference" name="tab_middleView"/>
+        <attr format="dimension|reference" name="tab_middleHMargin"/>
+        <attr format="reference|color" name="tab_badgeColor"/>
+        <attr format="dimension|reference" name="tab_badgePadding"/>
+        <attr format="reference|dimension" name="tab_badgeTextSize"/>
+        <attr format="reference|dimension" name="tab_badgeVerticalMargin"/>
+        <attr format="reference|dimension" name="tab_badgeHorizontalMargin"/>
+    </declare-styleable>
+
+    <!--jetified-CalendarExaple-1.0.1-->
+    <declare-styleable name="CalendarDateView">
+        <!--日历的行数， 默认是5-->
+        <attr format="integer" name="cdv_row"/>
+        <!--日历每月的第一天是否默认选中， 默认是true-->
+        <attr format="boolean" name="cdv_selectFirstDayOfMonth"/>
+    </declare-styleable>
+
+    <!--jetified-refresh-header-1.1.5-->
+    <declare-styleable name="DropBoxHeader"><attr format="reference" name="dhDrawable1"/><attr format="reference" name="dhDrawable2"/><attr format="reference" name="dhDrawable3"/></declare-styleable>
+    <declare-styleable name="FunGameHitBlockHeader"><attr format="integer" name="fghBlockHorizontalNum"/><attr format="dimension" name="fghBallSpeed">
+
+
+
+    </attr></declare-styleable>
+    <declare-styleable name="FunGameView"><attr format="string" name="fghMaskTextTop"/><attr format="string" name="fghMaskTextTopPull"/><attr format="string" name="fghMaskTextTopRelease"/><attr format="string" name="fghMaskTextBottom"/><attr format="dimension" name="fghMaskTextSizeTop"/><attr format="dimension" name="fghMaskTextSizeBottom"/><attr format="color" name="fghBackColor"/><attr format="color" name="fghLeftColor"/><attr format="color" name="fghMiddleColor"/><attr format="color" name="fghRightColor"/><attr format="string" name="fghTextLoading"/><attr format="string" name="fghTextLoadingFinished"/><attr format="string" name="fghTextLoadingFailed"/><attr format="string" name="fghTextGameOver"/></declare-styleable>
+    <declare-styleable name="MaterialHeader"><attr format="color" name="mhPrimaryColor"/><attr format="color" name="mhShadowColor"/><attr format="dimension" name="mhShadowRadius"/><attr format="boolean" name="mhShowBezierWave"/></declare-styleable>
+    <declare-styleable name="MountainSceneView"><attr format="color" name="msvPrimaryColor"/><attr format="dimension" name="msvViewportHeight"/></declare-styleable>
+    <declare-styleable name="PhoenixHeader"><attr format="color" name="phPrimaryColor"/><attr format="color" name="phAccentColor"/></declare-styleable>
+    <declare-styleable name="StoreHouseHeader"><attr format="string" name="shhText"/><attr format="dimension" name="shhLineWidth"/><attr format="dimension" name="shhDropHeight"/><attr format="boolean" name="shhEnableFadeAnimation"/></declare-styleable>
+    <declare-styleable name="TaurusHeader"><attr format="color" name="thPrimaryColor"/></declare-styleable>
+    <declare-styleable name="WaveSwipeHeader"><attr format="color" name="wshPrimaryColor"/><attr format="color" name="wshAccentColor"/><attr format="color" name="wshShadowColor"/><attr format="dimension" name="wshShadowRadius"/></declare-styleable>
+    <string name="fgh_mask_bottom">Scroll to move handle</string>
+    <string name="fgh_mask_top_pull">Pull To Break Out!</string>
+    <string name="fgh_mask_top_release">Release To Break Out!</string>
+    <string name="fgh_text_game_over">Game Over</string>
+    <string name="fgh_text_loading">Refreshing…</string>
+    <string name="fgh_text_loading_failed">Refreshing Failed</string>
+    <string name="fgh_text_loading_finish">Refreshing Finished</string>
+
+    <!--jetified-xutil-sub-2.0.0-->
+    <string name="xutil_tip_close_wifi_success">已关闭WiFi</string>
+    <string name="xutil_tip_close_wifiap_success">已关闭WLAN热点！</string>
+    <string name="xutil_tip_open_wifiap_failed">打开热点失败，请到系统设置里检查热点状态！</string>
+    <string name="xutil_tip_open_wifiap_success">已开启WLAN热点</string>
+
+    <!--jetified-xaop-runtime-1.1.0-->
+    <style name="AOP_Activity_Translucent">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:activityOpenEnterAnimation">@null</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@null</item>
+    </style>
+</resources>
