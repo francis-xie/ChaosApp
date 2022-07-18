@@ -1,7 +1,9 @@
 plugins {
     id 'com.android.application'
+    id 'kotlin-android'
+    //id 'org.jetbrains.kotlin.jvm'
     //id 'groovyx.android'
-    id 'groovyx.grooid.groovy-android'
+    //id 'groovyx.grooid.groovy-android'
     //id 'com.github.dcendents.android-maven'
 }
 
@@ -147,13 +149,15 @@ dependencies {
 
     //implementation 'com.android.tools.build:gradle:4.1.0'
     //implementation 'org.codehaus.groovy:groovy:2.4.3:grooid'
-    implementation ('org.codehaus.groovy:groovy:2.4.21'){
+    implementation 'org.codehaus.groovy:groovy:2.4.21:grooid'
+    implementation ('org.codehaus.groovy:groovy-xml:2.4.21') {
         exclude group: 'org.codehaus.groovy'
     }
     implementation 'commons-io:commons-io:2.11.0'
     //compileOnly module('org.codehaus.groovy:groovy:2.4.3') {
         //dependency('asm:asm-all:2.2.3')
     //}
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.32"
 
     // api：该依赖方式会传递所依赖的库，当其他module依赖了该module时，可以使用该module下使用api依赖的库。
     api 'io.github.inflationx:calligraphy3:3.1.1'
