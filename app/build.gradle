@@ -1,17 +1,9 @@
-plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
-    //id 'org.jetbrains.kotlin.jvm'
-    //id 'groovyx.android'
-    //id 'groovyx.grooid.groovy-android'
-    //id 'com.github.dcendents.android-maven'
+apply plugin: 'com.android.application'
+apply plugin: 'img-optimizer'
+if (isNeedPackage.toBoolean() && isUseBooster.toBoolean()) {
+    apply plugin: 'com.didiglobal.booster'
 }
-kapt {
-    arguments {
-        arg("moduleName", project.getName())
-    }
-}
+
 android {
     compileSdk 29
 
@@ -171,8 +163,10 @@ dependencies {
     //implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.32"
 
     //implementation project(':module-groovy')
+    implementation project(':module-android')
+    implementation project(':module-compiler')
     annotationProcessor project(':module-compiler')
-    kapt project(':module-compiler')
+    //kapt project(':module-compiler')
 
     // api：该依赖方式会传递所依赖的库，当其他module依赖了该module时，可以使用该module下使用api依赖的库。
     api 'io.github.inflationx:calligraphy3:3.1.1'

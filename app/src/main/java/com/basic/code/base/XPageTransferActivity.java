@@ -12,13 +12,13 @@ import com.basic.code.utils.XToastUtils;
 import com.basic.tools.common.StringUtils;
 
 /**
- * https://?/xpage/transfer?pageName=xxxxx&....
+ * https://?/leaf/transfer?pageName=xxxxx&....
  * applink的中转
  *
 
  * @since 2019-07-06 9:37
  */
-@Router(path = "/xpage/transfer")
+@Router(path = "/leaf/transfer")
 public class XPageTransferActivity extends BaseActivity {
 
     @AutoWired(name = "pageName")

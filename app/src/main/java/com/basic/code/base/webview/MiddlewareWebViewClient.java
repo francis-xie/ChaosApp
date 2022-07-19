@@ -120,7 +120,7 @@ public class MiddlewareWebViewClient extends MiddlewareWebClientBase {
             Uri uri = Uri.parse(url);
             if (uri != null && !(APP_LINK_HOST.equals(uri.getHost())
                     //防止xui官网被拦截
-                    && url.contains("xpage"))) {
+                    && url.contains("leaf"))) {
                 return false;
             }
         }

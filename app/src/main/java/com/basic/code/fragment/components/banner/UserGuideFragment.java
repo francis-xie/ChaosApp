@@ -16,7 +16,7 @@ import static com.basic.code.fragment.components.banner.UserGuideFragment.POSITI
 
 
 /**
- * 可使用Applink打开:https://？/xpage/transfer?pageName=UserGuide&position=2
+ * 可使用Applink打开:https://？/leaf/transfer?pageName=UserGuide&position=2
  *
 
  * @since 2019-07-06 10:21

@@ -175,8 +175,8 @@ public class CustomCaptureActivity extends CaptureActivity implements View.OnCli
     }
 
     /**
-     * 格式：https://？/xpage/transfer?pageName=xxxxx&....
-     * 例子：https://?/xpage/transfer?pageName=UserGuide&position=2
+     * 格式：https://？/leaf/transfer?pageName=xxxxx&....
+     * 例子：https://?/leaf/transfer?pageName=UserGuide&position=2
      *
      * @param url
      * @return
@@ -186,7 +186,7 @@ public class CustomCaptureActivity extends CaptureActivity implements View.OnCli
         return uri != null
                 && APP_LINK_HOST.equals(uri.getHost())
                 && (url.startsWith("http") || url.startsWith("https"))
-                && url.contains("xpage");
+                && url.contains("leaf");
     }
 
     private boolean isWeb(String url) {
