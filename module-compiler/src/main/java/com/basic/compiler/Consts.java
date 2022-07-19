@@ -1,13 +1,13 @@
-package com.basic.face;
+package com.basic.compiler;
 
 /**
  * 常量
-
+ * @author xuexiang
  */
 public class Consts {
     // Generate
     public static final String SEPARATOR = "$$";
-    public static final String PROJECT = "XPage";
+    public static final String PROJECT = "app";
     public static final String TAG = PROJECT + "::";
 
     public static final String FRAGMENT = "androidx.fragment.app.Fragment";

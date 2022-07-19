@@ -56,7 +56,7 @@ public class LogisticsCenter {
      * 该方法注册所有的路由信息、拦截器、接口服务
      */
     private static void loadRouterMap() {
-        registerByPlugin = false;
+        registerByPlugin = true;
         //auto generate register code by gradle plugin: xrouter-plugin
         // looks like below:
         // register(new XRouter..Root..modulejava());

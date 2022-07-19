@@ -21,8 +21,8 @@ public final class Consts {
 
     public static final String ROUTE_ROOT_SEIVICE = "com.basic.router.facade.service";
 
-    public static final String ROUTE_SERVICE_INTERCEPTORS = "/xrouter/service/interceptor";
-    public static final String ROUTE_SERVICE_AUTOWIRED = "/xrouter/service/autowired";
+    public static final String ROUTE_SERVICE_INTERCEPTORS = "/router/service/interceptor";
+    public static final String ROUTE_SERVICE_AUTOWIRED = "/router/service/autowired";
     /**
      * 路由缓存
      */

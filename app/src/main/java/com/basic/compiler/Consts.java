@@ -1,8 +1,8 @@
-package com.basic.face;
+package com.basic.compiler;
 
 /**
  * 常量
-
+ * @author xuexiang
  */
 public class Consts {
     // Generate

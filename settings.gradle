@@ -1,2 +1,2 @@
 rootProject.name = "ChaosApp"
-include ':app'
+include ':app', ':module-compiler'

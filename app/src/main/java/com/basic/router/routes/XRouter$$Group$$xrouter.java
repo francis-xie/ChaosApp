@@ -13,7 +13,7 @@ public class XRouter$$Group$$xrouter implements IRouteGroup {
   }
 
   public void loadInto(Map<String, RouteInfo> routeInfos) {
-    routeInfos.put("/xrouter/service/autowired", RouteInfo.build(RouteType.PROVIDER, AutoWiredServiceImpl.class, "/xrouter/service/autowired", "xrouter", (Map) null, -1, Integer.MIN_VALUE));
-    routeInfos.put("/xrouter/service/interceptor", RouteInfo.build(RouteType.PROVIDER, InterceptorServiceImpl.class, "/xrouter/service/interceptor", "xrouter", (Map) null, -1, Integer.MIN_VALUE));
+    routeInfos.put("/router/service/autowired", RouteInfo.build(RouteType.PROVIDER, AutoWiredServiceImpl.class, "/router/service/autowired", "router", (Map) null, -1, Integer.MIN_VALUE));
+    routeInfos.put("/router/service/interceptor", RouteInfo.build(RouteType.PROVIDER, InterceptorServiceImpl.class, "/router/service/interceptor", "router", (Map) null, -1, Integer.MIN_VALUE));
   }
 }

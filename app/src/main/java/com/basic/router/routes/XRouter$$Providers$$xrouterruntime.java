@@ -12,7 +12,7 @@ public class XRouter$$Providers$$xrouterruntime implements IProviderGroup {
   }
 
   public void loadInto(Map<String, RouteInfo> providers) {
-    providers.put("com.basic.router.facade.service.AutoWiredService", RouteInfo.build(RouteType.PROVIDER, AutoWiredServiceImpl.class, "/xrouter/service/autowired", "xrouter", (Map)null, -1, Integer.MIN_VALUE));
-    providers.put("com.basic.router.facade.service.InterceptorService", RouteInfo.build(RouteType.PROVIDER, InterceptorServiceImpl.class, "/xrouter/service/interceptor", "xrouter", (Map)null, -1, Integer.MIN_VALUE));
+    providers.put("com.basic.router.facade.service.AutoWiredService", RouteInfo.build(RouteType.PROVIDER, AutoWiredServiceImpl.class, "/router/service/autowired", "router", (Map)null, -1, Integer.MIN_VALUE));
+    providers.put("com.basic.router.facade.service.InterceptorService", RouteInfo.build(RouteType.PROVIDER, InterceptorServiceImpl.class, "/router/service/interceptor", "router", (Map)null, -1, Integer.MIN_VALUE));
   }
 }

@@ -10,6 +10,6 @@ public class XRouter$$Root$$xrouterruntime implements IRouteRoot {
   }
 
   public void loadInto(Map<String, Class<? extends IRouteGroup>> routeGroups) {
-    routeGroups.put("xrouter", XRouter$$Group$$xrouter.class);
+    routeGroups.put("router", XRouter$$Group$$xrouter.class);
   }
 }
