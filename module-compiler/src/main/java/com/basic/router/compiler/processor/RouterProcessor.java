@@ -65,11 +65,9 @@ import static javax.lang.model.element.Modifier.PUBLIC;
 /**
  * Process the annotation of {@link Router}
  *
- * <p>自动生成路由组注册接口 XRouter$$Group$$[groupName] </p>
- * <p>自动生成根路由注册接口 XRouter$$Root$$[moduleName] </p>
- * <p>自动生成IProvider注册接口 XRouter$$Providers$$[moduleName] </p>
- *
- * @author xuexiang
+ * <p>自动生成路由组注册接口 Router$$Group$$[groupName] </p>
+ * <p>自动生成根路由注册接口 Router$$Root$$[moduleName] </p>
+ * <p>自动生成IProvider注册接口 Router$$Providers$$[moduleName] </p>
  * @since 2018/5/20 上午12:19
  */
 @AutoService(Processor.class)
@@ -158,7 +156,9 @@ public class RouterProcessor extends AbstractProcessor {
                     "        moduleName project.getName();\n" +
                     "    }\n" +
                     "}\n");
-            throw new RuntimeException(PREFIX_OF_LOGGER + ">>> No module name, for more information, look at gradle log.");
+            //默认是app
+            moduleName = "app";
+            //throw new RuntimeException(PREFIX_OF_LOGGER + ">>> No module name, for more information, look at gradle log.");
         }
     }
 
@@ -200,7 +200,7 @@ public class RouterProcessor extends AbstractProcessor {
             TypeMirror type_Fragment = elements.getTypeElement(FRAGMENT).asType();
             TypeMirror type_Fragment_V4 = elements.getTypeElement(Consts.FRAGMENT_V4).asType();
 
-            // Interface of XRouter
+            // Interface of Router
             TypeElement type_IRouteGroup = elements.getTypeElement(IROUTE_GROUP);
             TypeElement type_IProviderGroup = elements.getTypeElement(IPROVIDER_GROUP);
             ClassName routeInfoClassName = ClassName.get(RouteInfo.class);
@@ -309,7 +309,7 @@ public class RouterProcessor extends AbstractProcessor {
                         .addModifiers(PUBLIC)
                         .addParameter(groupParamSpec);
 
-                // 填充构建XRouter$$Providers$$信息，生成对应代码
+                // 填充构建Router$$Providers$$信息，生成对应代码
                 Set<RouteInfo> groupData = entry.getValue();
                 for (RouteInfo routeInfo : groupData) {
                     switch (routeInfo.getType()) {
@@ -343,7 +343,7 @@ public class RouterProcessor extends AbstractProcessor {
                             break;
                     }
 
-                    // 填充构建XRouter$$Group$$信息，生成对应代码
+                    // 填充构建Router$$Group$$信息，生成对应代码
                     StringBuilder mapBodyBuilder = new StringBuilder();
                     Map<String, Integer> paramsType = routeInfo.getParamsType();
                     if (MapUtils.isNotEmpty(paramsType)) {
@@ -363,7 +363,7 @@ public class RouterProcessor extends AbstractProcessor {
                             routeInfo.getGroup().toLowerCase());
                 }
 
-                // 生成XRouter$$Group$$[groupName] 路由注册接口类
+                // 生成Router$$Group$$[groupName] 路由注册接口类
                 String groupFileName = NAME_OF_GROUP + groupName;
                 JavaFile.builder(PACKAGE_OF_GENERATE_FILE,
                         TypeSpec.classBuilder(groupFileName)
@@ -379,7 +379,7 @@ public class RouterProcessor extends AbstractProcessor {
             }
 
             if (MapUtils.isNotEmpty(rootMap)) {
-                // 根据Group的信息，填充构建XRouter$$Root$$信息，生成对应代码
+                // 根据Group的信息，填充构建Router$$Root$$信息，生成对应代码
                 for (Map.Entry<String, String> entry : rootMap.entrySet()) {
                     loadIntoMethodOfRootBuilder.addStatement("routeGroups.put($S, $T.class)",
                             entry.getKey(),  //路由组名
@@ -387,7 +387,7 @@ public class RouterProcessor extends AbstractProcessor {
                 }
             }
 
-            // 生成XRouter$$Providers$$[moduleName] provider注册接口类
+            // 生成Router$$Providers$$[moduleName] provider注册接口类
             String providerMapFileName = NAME_OF_PROVIDER + moduleName;
             JavaFile.builder(PACKAGE_OF_GENERATE_FILE,
                     TypeSpec.classBuilder(providerMapFileName)
@@ -400,7 +400,7 @@ public class RouterProcessor extends AbstractProcessor {
 
             logger.info(">>> Generated provider map, name is : " + providerMapFileName + " <<<");
 
-            // 生成XRouter$$Root$$[moduleName] 根路由注册接口类
+            // 生成Router$$Root$$[moduleName] 根路由注册接口类
             String rootFileName = NAME_OF_ROOT + moduleName;
             JavaFile.builder(PACKAGE_OF_GENERATE_FILE,
                     TypeSpec.classBuilder(rootFileName)

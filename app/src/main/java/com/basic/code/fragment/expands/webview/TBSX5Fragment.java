@@ -6,6 +6,7 @@ import android.view.KeyEvent;
 
 import androidx.fragment.app.Fragment;
 
+import com.basic.router.launcher.Router;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
@@ -14,7 +15,6 @@ import com.basic.leaf.annotation.Page;
 import com.basic.leaf.base.XPageFragment;
 import com.basic.leaf.core.PageOption;
 import com.basic.router.annotation.AutoWired;
-import com.basic.router.launcher.XRouter;
 import com.basic.code.R;
 import com.basic.code.base.BaseFragment;
 import com.basic.code.utils.XToastUtils;
@@ -57,7 +57,7 @@ public class TBSX5Fragment extends BaseFragment {
 
     @Override
     protected void initArgs() {
-        XRouter.getInstance().inject(this);
+        Router.getInstance().inject(this);
     }
 
     @Override

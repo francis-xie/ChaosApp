@@ -16,7 +16,7 @@ import com.basic.leaf.base.XPageFragment;
 import com.basic.leaf.core.PageOption;
 import com.basic.leaf.enums.CoreAnim;
 import com.basic.router.facade.service.SerializationService;
-import com.basic.router.launcher.XRouter;
+import com.basic.router.launcher.Router;
 import com.basic.face.utils.DrawableUtils;
 import com.basic.face.utils.KeyboardUtils;
 import com.basic.face.utils.ThemeUtils;
@@ -183,7 +183,7 @@ public abstract class BaseFragment extends XPageFragment {
         } else if (value instanceof Serializable) {
             option.putSerializable(key, (Serializable) value);
         } else {
-            option.putString(key, XRouter.getInstance().navigation(SerializationService.class).object2Json(value));
+            option.putString(key, Router.getInstance().navigation(SerializationService.class).object2Json(value));
         }
         return option.open(this);
     }

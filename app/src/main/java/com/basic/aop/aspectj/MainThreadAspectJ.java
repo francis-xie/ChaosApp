@@ -8,6 +8,7 @@ import com.basic.aop.logger.XLogger;
 import com.basic.aop.util.AppExecutors;
 import com.basic.aop.util.Utils;
 
+import com.basic.router.logs.XRLog;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -38,6 +39,7 @@ public class MainThreadAspectJ {
     @Around("method()")//在连接点进行方法替换
     public void aroundJoinPoint(final ProceedingJoinPoint joinPoint) throws Throwable {
         if (Looper.getMainLooper() == Looper.myLooper()) {
+            XRLog.i(Utils.getMethodDescribeInfo(joinPoint) + " \u21E2 [当前线程]:" + Thread.currentThread().getName() + "，正在切换到主线程！");
             joinPoint.proceed();
         } else {
             XLogger.d(Utils.getMethodDescribeInfo(joinPoint) + " \u21E2 [当前线程]:" + Thread.currentThread().getName() + "，正在切换到主线程！");

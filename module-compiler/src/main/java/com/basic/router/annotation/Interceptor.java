@@ -9,8 +9,6 @@ import java.lang.annotation.Target;
 
 /**
  * 路由拦截器 <br>注意 : 该注解只能表注#{IInterceptor}的实现类
- *
- * @author xuexiang
  * @since 2018/5/17 上午12:16
  */
 @Target({ElementType.TYPE})

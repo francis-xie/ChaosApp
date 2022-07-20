@@ -9,8 +9,6 @@ import java.lang.annotation.Target;
 
 /**
  * 路由创建注解
- *
- * @author xuexiang
  * @since 2018/5/17 上午12:32
  */
 @Target({ElementType.TYPE})

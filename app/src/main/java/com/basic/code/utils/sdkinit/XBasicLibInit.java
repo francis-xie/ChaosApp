@@ -8,11 +8,10 @@ import com.basic.aop.XAOP;
 import com.basic.dbms.XUIDataBaseRepository;
 import com.basic.dbms.logs.DBLog;
 import com.basic.leaf.PageConfig;
-import com.basic.router.launcher.XRouter;
+import com.basic.router.launcher.Router;
 import com.basic.code.MyApp;
 import com.basic.code.base.BaseActivity;
 import com.basic.code.base.db.InternalDataBase;
-import com.basic.code.utils.LocationService;
 import com.basic.code.utils.TokenUtils;
 import com.basic.code.utils.XToastUtils;
 import com.basic.tools.XUtil;
@@ -81,17 +80,17 @@ public final class XBasicLibInit {
     }
 
     /**
-     * 初始化XRouter路由
+     * 初始化Router路由
      *
      * @param application
      */
     private static void initRouter(Application application) {
         // 这两行必须写在init之前，否则这些配置在init过程中将无效
         if (MyApp.isDebug()) {
-            XRouter.openLog();     // 打印日志
-            XRouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
+            Router.openLog();     // 打印日志
+            Router.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
         }
-        XRouter.init(application);
+        Router.init(application);
     }
 
     /**

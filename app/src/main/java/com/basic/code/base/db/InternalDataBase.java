@@ -4,9 +4,9 @@ package com.basic.code.base.db;
 
 import android.database.sqlite.SQLiteDatabase;
 
+import com.basic.dbms.AppDataBaseTable;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
-import com.basic.dbms.AppDataBaseTable;
 import com.basic.dbms.db.DataBaseUtils;
 import com.basic.dbms.db.IDatabase;
 import com.basic.dbms.logs.DBLog;

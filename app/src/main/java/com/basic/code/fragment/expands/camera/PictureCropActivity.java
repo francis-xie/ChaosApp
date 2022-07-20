@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.basic.router.annotation.AutoWired;
-import com.basic.router.launcher.XRouter;
+import com.basic.router.launcher.Router;
 import com.basic.face.widget.imageview.crop.CropImageType;
 import com.basic.face.widget.imageview.crop.CropImageView;
 import com.basic.code.R;
@@ -63,7 +63,7 @@ public class PictureCropActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picture_crop);
         mUnbinder = ButterKnife.bind(this);
-        XRouter.getInstance().inject(this);
+        Router.getInstance().inject(this);
 
         if (StringUtils.isEmpty(mImgPath)) {
             finish();

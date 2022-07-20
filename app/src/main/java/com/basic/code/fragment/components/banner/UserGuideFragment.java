@@ -4,15 +4,13 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.basic.leaf.annotation.Page;
 import com.basic.router.annotation.AutoWired;
-import com.basic.router.launcher.XRouter;
+import com.basic.router.launcher.Router;
 import com.basic.face.widget.actionbar.TitleBar;
 import com.basic.face.widget.banner.anim.select.ZoomInEnter;
 import com.basic.face.widget.banner.widget.banner.SimpleGuideBanner;
 import com.basic.code.DemoDataProvider;
 import com.basic.code.R;
 import com.basic.code.base.BaseFragment;
-
-import static com.basic.code.fragment.components.banner.UserGuideFragment.POSITION;
 
 
 /**
@@ -38,7 +36,7 @@ public class UserGuideFragment extends BaseFragment {
 
     @Override
     protected void initArgs() {
-        XRouter.getInstance().inject(this);
+        Router.getInstance().inject(this);
 
         if (position >= 0 && position <= DemoDataProvider.transformers.length - 1) {
             transformerClass = DemoDataProvider.transformers[position];

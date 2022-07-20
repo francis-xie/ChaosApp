@@ -15,7 +15,7 @@ import com.basic.leaf.base.XPageActivity;
 import com.basic.leaf.base.XPageFragment;
 import com.basic.leaf.core.PageOption;
 import com.basic.router.annotation.AutoWired;
-import com.basic.router.launcher.XRouter;
+import com.basic.router.launcher.Router;
 import com.basic.face.widget.actionbar.TitleBar;
 import com.basic.code.R;
 import com.basic.code.base.BaseFragment;
@@ -33,7 +33,6 @@ import okhttp3.Call;
 import okhttp3.Request;
 
 import static com.basic.aop.consts.PermissionConsts.STORAGE;
-import static com.basic.code.fragment.expands.webview.TbsWebFileReaderFragment.KEY_FILE_URI;
 
 /**
 
@@ -56,7 +55,7 @@ public class TbsWebFileReaderFragment extends BaseFragment {
     @Override
     protected void initArgs() {
         super.initArgs();
-        XRouter.getInstance().inject(this);
+        Router.getInstance().inject(this);
     }
 
     @Override

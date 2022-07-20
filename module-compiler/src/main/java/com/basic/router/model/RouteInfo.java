@@ -14,8 +14,6 @@ import javax.lang.model.element.Element;
 
 /**
  * 路由信息
- *
- * @author xuexiang
  * @since 2018/5/17 上午12:32
  */
 public class RouteInfo {

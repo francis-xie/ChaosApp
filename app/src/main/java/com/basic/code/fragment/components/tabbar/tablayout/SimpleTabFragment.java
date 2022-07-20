@@ -15,7 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.basic.router.annotation.AutoWired;
-import com.basic.router.launcher.XRouter;
+import com.basic.router.launcher.Router;
 import com.basic.code.R;
 import com.basic.tools.common.RandomUtils;
 
@@ -78,7 +78,7 @@ public class SimpleTabFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        XRouter.getInstance().inject(this);
+        Router.getInstance().inject(this);
     }
 
     @Nullable

@@ -9,8 +9,6 @@ import java.lang.annotation.Target;
 
 /**
  * 实现自动装配（依赖注入）的注解
- *
- * @author xuexiang
  * @since 2018/5/17 上午12:15
  */
 @Target({ElementType.FIELD})

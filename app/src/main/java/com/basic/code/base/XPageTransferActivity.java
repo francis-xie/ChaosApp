@@ -5,8 +5,7 @@ package com.basic.code.base;
 import android.os.Bundle;
 
 import com.basic.router.annotation.AutoWired;
-import com.basic.router.annotation.Router;
-import com.basic.router.launcher.XRouter;
+import com.basic.router.launcher.Router;
 import com.basic.code.utils.Utils;
 import com.basic.code.utils.XToastUtils;
 import com.basic.tools.common.StringUtils;
@@ -18,7 +17,7 @@ import com.basic.tools.common.StringUtils;
 
  * @since 2019-07-06 9:37
  */
-@Router(path = "/leaf/transfer")
+@com.basic.router.annotation.Router(path = "/leaf/transfer")
 public class XPageTransferActivity extends BaseActivity {
 
     @AutoWired(name = "pageName")
@@ -27,7 +26,7 @@ public class XPageTransferActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        XRouter.getInstance().inject(this);
+        Router.getInstance().inject(this);
 
         if (!StringUtils.isEmpty(pageName)) {
             if (openPage(pageName, getIntent().getExtras()) == null) {

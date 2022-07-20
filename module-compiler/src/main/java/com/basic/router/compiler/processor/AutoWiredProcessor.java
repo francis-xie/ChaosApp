@@ -53,9 +53,7 @@ import static javax.lang.model.element.Modifier.PUBLIC;
 /**
  * Process the annotation of {@link AutoWired}
  *
- * <p>自动生成依赖注入的辅助类 [ClassName]$$XRouter$$AutoWired </p>
- *
- * @author xuexiang
+ * <p>自动生成依赖注入的辅助类 [ClassName]$$Router$$AutoWired </p>
  * @since 2018/5/20 上午12:02
  */
 @AutoService(Processor.class)
@@ -81,7 +79,7 @@ public class AutoWiredProcessor extends AbstractProcessor {
      */
     private Elements elements;
     private Map<TypeElement, List<Element>> parentAndChild = new HashMap<>();   // Contain field need autowired and his super class.
-    private static final ClassName XRouterClassName = ClassName.get("com.basic.router.launcher", "XRouter");
+    private static final ClassName XRouterClassName = ClassName.get("com.basic.router.launcher", "Router");
     private static final ClassName XRLogClassName = ClassName.get("com.basic.router.logs", "XRLog");
 
     @Override
@@ -173,7 +171,7 @@ public class AutoWiredProcessor extends AbstractProcessor {
                     Build method : 'inject'
                     @Override
                     public void inject(Object target) {
-                        serializationService = XRouter.getInstance().navigation(SerializationService.class);
+                        serializationService = Router.getInstance().navigation(SerializationService.class);
                         T substitute = (T)target;
                     }
                  */
@@ -264,7 +262,7 @@ public class AutoWiredProcessor extends AbstractProcessor {
                 //添加依赖注入的方法
                 injectHelper.addMethod(injectMethodBuilder.build());
 
-                // 生成自动依赖注入的类文件[ClassName]$$XRouter$$AutoWired
+                // 生成自动依赖注入的类文件[ClassName]$$Router$$AutoWired
                 JavaFile.builder(packageName, injectHelper.build()).build().writeTo(filer);
 
                 logger.info(">>> " + parent.getSimpleName() + " has been processed, " + fileName + " has been generated. <<<");

@@ -7,7 +7,7 @@ import android.widget.TextView;
 import com.basic.aop.annotation.MemoryCache;
 import com.basic.leaf.annotation.Page;
 import com.basic.router.annotation.AutoWired;
-import com.basic.router.launcher.XRouter;
+import com.basic.router.launcher.Router;
 import com.basic.face.widget.actionbar.TitleBar;
 import com.basic.code.R;
 import com.basic.code.base.BaseFragment;
@@ -49,7 +49,7 @@ public class ServiceProtocolFragment extends BaseFragment {
 
     @Override
     protected void initArgs() {
-        XRouter.getInstance().inject(this);
+        Router.getInstance().inject(this);
     }
 
     @Override

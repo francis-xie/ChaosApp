@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.basic.router.annotation.AutoWired;
-import com.basic.router.launcher.XRouter;
+import com.basic.router.launcher.Router;
 import com.basic.face.widget.actionbar.TitleBar;
 import com.basic.code.DemoDataProvider;
 import com.basic.code.R;
@@ -46,7 +46,7 @@ public class SimpleListFragment extends BaseFragment {
 
     @Override
     protected void initArgs() {
-        XRouter.getInstance().inject(this);
+        Router.getInstance().inject(this);
     }
 
     @Override

@@ -12,7 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.basic.router.facade.Postcard;
 import com.basic.router.facade.callback.NavCallback;
-import com.basic.router.launcher.XRouter;
+import com.basic.router.launcher.Router;
 import com.basic.face.widget.slideback.SlideBack;
 import com.basic.code.R;
 import com.basic.code.base.BaseAppCompatActivity;
@@ -49,7 +49,7 @@ public class AgentWebActivity extends BaseAppCompatActivity {
     private void loadWeb(Intent intent) {
         Uri uri = intent.getData();
         if (uri != null) {
-            XRouter.getInstance().build(uri).navigation(this, new NavCallback() {
+            Router.getInstance().build(uri).navigation(this, new NavCallback() {
                 @Override
                 public void onArrival(Postcard postcard) {
                     finish();

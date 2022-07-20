@@ -7,7 +7,6 @@ import javax.tools.Diagnostic;
 
 /**
  * 日志记录
- * @author xuexiang
  */
 public class Logger {
     private Messager msg;

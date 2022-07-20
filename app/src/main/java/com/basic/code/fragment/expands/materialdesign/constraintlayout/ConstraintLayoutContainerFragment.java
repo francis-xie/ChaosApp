@@ -12,12 +12,9 @@ import androidx.annotation.Nullable;
 
 import com.basic.leaf.annotation.Page;
 import com.basic.router.annotation.AutoWired;
-import com.basic.router.launcher.XRouter;
+import com.basic.router.launcher.Router;
 import com.basic.face.widget.actionbar.TitleBar;
 import com.basic.code.base.BaseFragment;
-
-import static com.basic.code.fragment.expands.materialdesign.constraintlayout.ConstraintLayoutContainerFragment.KEY_LAYOUT_ID;
-import static com.basic.code.fragment.expands.materialdesign.constraintlayout.ConstraintLayoutContainerFragment.KEY_TITLE;
 
 /**
 
@@ -35,7 +32,7 @@ public class ConstraintLayoutContainerFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        XRouter.getInstance().inject(this);
+        Router.getInstance().inject(this);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 

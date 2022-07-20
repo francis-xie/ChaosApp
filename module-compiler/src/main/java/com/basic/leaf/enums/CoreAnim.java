@@ -2,7 +2,6 @@ package com.basic.leaf.enums;
 
 /**
  * 页面切换动画枚举
- * @author xuexiang
  */
 public enum CoreAnim {
 	/**

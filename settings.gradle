@@ -1,2 +1,1 @@
-rootProject.name = "ChaosApp"
-include ':app', ':module-android', ':module-compiler'
+include ':app', ':module-groovy', ':module-library', ':module-compiler'

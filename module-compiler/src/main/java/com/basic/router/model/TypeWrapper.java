@@ -8,7 +8,6 @@ import java.lang.reflect.Type;
 /**
  * <pre>
  *     desc   : 获得泛型的类型
- *     author : xuexiang
  *     time   : 2018/5/15 下午11:25
  * </pre>
  */

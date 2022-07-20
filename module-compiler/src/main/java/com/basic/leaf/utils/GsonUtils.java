@@ -9,8 +9,6 @@ import java.lang.reflect.Type;
 
 /**
  * Gson工具类
- *
- * @author xuexiang
  * @since 2021/8/8 3:14 下午
  */
 public final class GsonUtils {
