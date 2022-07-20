@@ -1,1 +1,1 @@
-include ':app', ':module-groovy', ':module-library', ':module-compiler'
+include ':app', ':module-java', ':module-groovy', ':module-library', ':module-compiler'
