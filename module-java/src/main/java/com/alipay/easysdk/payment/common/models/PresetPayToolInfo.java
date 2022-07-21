@@ -1,9 +1,11 @@
 // This file is auto-generated, don't edit it. Thanks.
 package com.alipay.easysdk.payment.common.models;
 
-import com.aliyun.tea.*;
+import com.basic.http.NameInMap;
+import com.basic.http.HttpModel;
+import com.basic.http.Validation;
 
-public class PresetPayToolInfo extends TeaModel {
+public class PresetPayToolInfo extends HttpModel {
     @NameInMap("amount")
     @Validation(required = true)
     public java.util.List<String> amount;
@@ -14,7 +16,7 @@ public class PresetPayToolInfo extends TeaModel {
 
     public static PresetPayToolInfo build(java.util.Map<String, ?> map) throws Exception {
         PresetPayToolInfo self = new PresetPayToolInfo();
-        return TeaModel.build(map, self);
+        return HttpModel.build(map, self);
     }
 
     public PresetPayToolInfo setAmount(java.util.List<String> amount) {

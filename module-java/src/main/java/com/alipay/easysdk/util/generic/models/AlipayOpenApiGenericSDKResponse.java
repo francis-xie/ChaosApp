@@ -1,9 +1,11 @@
 // This file is auto-generated, don't edit it. Thanks.
 package com.alipay.easysdk.util.generic.models;
 
-import com.aliyun.tea.*;
+import com.basic.http.NameInMap;
+import com.basic.http.HttpModel;
+import com.basic.http.Validation;
 
-public class AlipayOpenApiGenericSDKResponse extends TeaModel {
+public class AlipayOpenApiGenericSDKResponse extends HttpModel {
     // 订单信息，字符串形式
     @NameInMap("body")
     @Validation(required = true)
@@ -11,7 +13,7 @@ public class AlipayOpenApiGenericSDKResponse extends TeaModel {
 
     public static AlipayOpenApiGenericSDKResponse build(java.util.Map<String, ?> map) throws Exception {
         AlipayOpenApiGenericSDKResponse self = new AlipayOpenApiGenericSDKResponse();
-        return TeaModel.build(map, self);
+        return HttpModel.build(map, self);
     }
 
     public AlipayOpenApiGenericSDKResponse setBody(String body) {

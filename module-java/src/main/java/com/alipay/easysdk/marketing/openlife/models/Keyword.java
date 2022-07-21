@@ -1,9 +1,11 @@
 // This file is auto-generated, don't edit it. Thanks.
 package com.alipay.easysdk.marketing.openlife.models;
 
-import com.aliyun.tea.*;
+import com.basic.http.NameInMap;
+import com.basic.http.HttpModel;
+import com.basic.http.Validation;
 
-public class Keyword extends TeaModel {
+public class Keyword extends HttpModel {
     @NameInMap("color")
     @Validation(required = true)
     public String color;
@@ -14,7 +16,7 @@ public class Keyword extends TeaModel {
 
     public static Keyword build(java.util.Map<String, ?> map) throws Exception {
         Keyword self = new Keyword();
-        return TeaModel.build(map, self);
+        return HttpModel.build(map, self);
     }
 
     public Keyword setColor(String color) {

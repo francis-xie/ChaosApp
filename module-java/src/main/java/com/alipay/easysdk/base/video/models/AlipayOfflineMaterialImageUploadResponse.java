@@ -1,9 +1,11 @@
 // This file is auto-generated, don't edit it. Thanks.
 package com.alipay.easysdk.base.video.models;
 
-import com.aliyun.tea.*;
+import com.basic.http.NameInMap;
+import com.basic.http.HttpModel;
+import com.basic.http.Validation;
 
-public class AlipayOfflineMaterialImageUploadResponse extends TeaModel {
+public class AlipayOfflineMaterialImageUploadResponse extends HttpModel {
     // 响应原始字符串
     @NameInMap("http_body")
     @Validation(required = true)
@@ -35,7 +37,7 @@ public class AlipayOfflineMaterialImageUploadResponse extends TeaModel {
 
     public static AlipayOfflineMaterialImageUploadResponse build(java.util.Map<String, ?> map) throws Exception {
         AlipayOfflineMaterialImageUploadResponse self = new AlipayOfflineMaterialImageUploadResponse();
-        return TeaModel.build(map, self);
+        return HttpModel.build(map, self);
     }
 
     public AlipayOfflineMaterialImageUploadResponse setHttpBody(String httpBody) {

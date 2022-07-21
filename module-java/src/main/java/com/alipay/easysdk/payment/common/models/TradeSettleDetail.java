@@ -1,9 +1,11 @@
 // This file is auto-generated, don't edit it. Thanks.
 package com.alipay.easysdk.payment.common.models;
 
-import com.aliyun.tea.*;
+import com.basic.http.NameInMap;
+import com.basic.http.HttpModel;
+import com.basic.http.Validation;
 
-public class TradeSettleDetail extends TeaModel {
+public class TradeSettleDetail extends HttpModel {
     @NameInMap("operation_type")
     @Validation(required = true)
     public String operationType;
@@ -30,7 +32,7 @@ public class TradeSettleDetail extends TeaModel {
 
     public static TradeSettleDetail build(java.util.Map<String, ?> map) throws Exception {
         TradeSettleDetail self = new TradeSettleDetail();
-        return TeaModel.build(map, self);
+        return HttpModel.build(map, self);
     }
 
     public TradeSettleDetail setOperationType(String operationType) {

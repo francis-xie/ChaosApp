@@ -7,7 +7,7 @@ import com.alipay.easysdk.kernel.util.MultipartUtil;
 import com.alipay.easysdk.kernel.util.PageUtil;
 import com.alipay.easysdk.kernel.util.SignContentExtractor;
 import com.alipay.easysdk.kernel.util.Signer;
-import com.aliyun.tea.TeaResponse;
+import com.basic.http.HttpResponse;
 import com.google.common.base.Strings;
 import com.google.common.io.Files;
 import com.google.gson.Gson;
@@ -130,7 +130,7 @@ public class Client {
      * @return 响应反序列化的Map
      */
     @SuppressWarnings("unchecked")
-    public Map<String, Object> readAsJson(TeaResponse response, String method) throws Exception {
+    public Map<String, Object> readAsJson(HttpResponse response, String method) throws Exception {
         String responseBody = response.getResponseBody();
         Map map = new Gson().fromJson(responseBody, Map.class);
         map.put(AlipayConstants.BODY_FIELD, responseBody);
@@ -139,7 +139,7 @@ public class Client {
         return map;
     }
 
-    private void closeConnection(TeaResponse response) {
+    private void closeConnection(HttpResponse response) {
         if (response.getResponse() != null) {
             try {
                 response.getResponse().close();

@@ -1,9 +1,11 @@
 // This file is auto-generated, don't edit it. Thanks.
 package com.alipay.easysdk.member.identification.models;
 
-import com.aliyun.tea.*;
+import com.basic.http.NameInMap;
+import com.basic.http.HttpModel;
+import com.basic.http.Validation;
 
-public class IdentityParam extends TeaModel {
+public class IdentityParam extends HttpModel {
     @NameInMap("identity_type")
     @Validation(required = true)
     public String identityType;
@@ -22,7 +24,7 @@ public class IdentityParam extends TeaModel {
 
     public static IdentityParam build(java.util.Map<String, ?> map) throws Exception {
         IdentityParam self = new IdentityParam();
-        return TeaModel.build(map, self);
+        return HttpModel.build(map, self);
     }
 
     public IdentityParam setIdentityType(String identityType) {

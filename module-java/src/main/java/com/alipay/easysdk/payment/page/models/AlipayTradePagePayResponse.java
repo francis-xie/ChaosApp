@@ -1,9 +1,11 @@
 // This file is auto-generated, don't edit it. Thanks.
 package com.alipay.easysdk.payment.page.models;
 
-import com.aliyun.tea.*;
+import com.basic.http.NameInMap;
+import com.basic.http.HttpModel;
+import com.basic.http.Validation;
 
-public class AlipayTradePagePayResponse extends TeaModel {
+public class AlipayTradePagePayResponse extends HttpModel {
     // 订单信息，Form表单形式
     @NameInMap("body")
     @Validation(required = true)
@@ -11,7 +13,7 @@ public class AlipayTradePagePayResponse extends TeaModel {
 
     public static AlipayTradePagePayResponse build(java.util.Map<String, ?> map) throws Exception {
         AlipayTradePagePayResponse self = new AlipayTradePagePayResponse();
-        return TeaModel.build(map, self);
+        return HttpModel.build(map, self);
     }
 
     public AlipayTradePagePayResponse setBody(String body) {

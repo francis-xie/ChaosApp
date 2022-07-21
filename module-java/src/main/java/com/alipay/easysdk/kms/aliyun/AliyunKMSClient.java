@@ -6,9 +6,9 @@ import com.alipay.easysdk.kms.aliyun.models.AsymmetricSignResponse;
 import com.alipay.easysdk.kms.aliyun.models.GetPublicKeyRequest;
 import com.alipay.easysdk.kms.aliyun.models.GetPublicKeyResponse;
 import com.alipay.easysdk.kms.aliyun.models.RuntimeOptions;
-import com.aliyun.tea.TeaConverter;
-import com.aliyun.tea.TeaModel;
-import com.aliyun.tea.TeaPair;
+import com.basic.http.HttpConverter;
+import com.basic.http.HttpModel;
+import com.basic.http.HttpPair;
 import org.bouncycastle.asn1.gm.GMNamedCurves;
 import org.bouncycastle.asn1.x9.X9ECParameters;
 import org.bouncycastle.crypto.Digest;
@@ -79,21 +79,21 @@ public class AliyunKMSClient extends AliyunRpcClient {
 
     private GetPublicKeyResponse _getPublicKey(GetPublicKeyRequest request) throws Exception {
         validateModel(request);
-        RuntimeOptions runtime = RuntimeOptions.build(TeaConverter.buildMap(
-                new TeaPair("connectTimeout", this.connectTimeout),
-                new TeaPair("readTimeout", this.readTimeout),
-                new TeaPair("maxAttempts", this.maxAttempts),
-                new TeaPair("ignoreSSL", this.ignoreSSL)
+        RuntimeOptions runtime = RuntimeOptions.build(HttpConverter.buildMap(
+                new HttpPair("connectTimeout", this.connectTimeout),
+                new HttpPair("readTimeout", this.readTimeout),
+                new HttpPair("maxAttempts", this.maxAttempts),
+                new HttpPair("ignoreSSL", this.ignoreSSL)
         ));
-        return TeaModel.toModel(
-                this.doRequest("GetPublicKey", this.protocol, this.method, this.version, TeaModel.buildMap(request), null, runtime),
+        return HttpModel.toModel(
+                this.doRequest("GetPublicKey", this.protocol, this.method, this.version, HttpModel.buildMap(request), null, runtime),
                 new GetPublicKeyResponse());
     }
 
     private PublicKey getPublicKey(String keyId, String keyVersionId) throws Exception {
-        GetPublicKeyRequest request = GetPublicKeyRequest.build(TeaConverter.buildMap(
-                new TeaPair("KeyId", keyId),
-                new TeaPair("KeyVersionId", keyVersionId)
+        GetPublicKeyRequest request = GetPublicKeyRequest.build(HttpConverter.buildMap(
+                new HttpPair("KeyId", keyId),
+                new HttpPair("KeyVersionId", keyVersionId)
         ));
         GetPublicKeyResponse response = _getPublicKey(request);
         String pemKey = response.publicKey;
@@ -154,14 +154,14 @@ public class AliyunKMSClient extends AliyunRpcClient {
 
     private AsymmetricSignResponse _asymmetricSign(AsymmetricSignRequest request) throws Exception {
         validateModel(request);
-        RuntimeOptions runtime = RuntimeOptions.build(TeaConverter.buildMap(
-                new TeaPair("connectTimeout", this.connectTimeout),
-                new TeaPair("readTimeout", this.readTimeout),
-                new TeaPair("maxAttempts", this.maxAttempts),
-                new TeaPair("ignoreSSL", this.ignoreSSL)
+        RuntimeOptions runtime = RuntimeOptions.build(HttpConverter.buildMap(
+                new HttpPair("connectTimeout", this.connectTimeout),
+                new HttpPair("readTimeout", this.readTimeout),
+                new HttpPair("maxAttempts", this.maxAttempts),
+                new HttpPair("ignoreSSL", this.ignoreSSL)
         ));
-        return TeaModel.toModel(
-                this.doRequest("AsymmetricSign", this.protocol, this.method, this.version, TeaModel.buildMap(request), null, runtime),
+        return HttpModel.toModel(
+                this.doRequest("AsymmetricSign", this.protocol, this.method, this.version, HttpModel.buildMap(request), null, runtime),
                 new AsymmetricSignResponse());
     }
 
@@ -176,11 +176,11 @@ public class AliyunKMSClient extends AliyunRpcClient {
             digest = MessageDigest.getInstance(digestAlgs.get(algorithm)).digest(message);
         }
 
-        AsymmetricSignRequest request = AsymmetricSignRequest.build(TeaConverter.buildMap(
-                new TeaPair("keyId", keyId),
-                new TeaPair("keyVersionId", keyVersionId),
-                new TeaPair("algorithm", algorithm),
-                new TeaPair("digest", Base64.toBase64String(digest))
+        AsymmetricSignRequest request = AsymmetricSignRequest.build(HttpConverter.buildMap(
+                new HttpPair("keyId", keyId),
+                new HttpPair("keyVersionId", keyVersionId),
+                new HttpPair("algorithm", algorithm),
+                new HttpPair("digest", Base64.toBase64String(digest))
         ));
         AsymmetricSignResponse response = _asymmetricSign(request);
         return response.value;

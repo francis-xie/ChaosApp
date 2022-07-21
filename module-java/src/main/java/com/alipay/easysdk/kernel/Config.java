@@ -4,15 +4,15 @@
  */
 package com.alipay.easysdk.kernel;
 
-import com.aliyun.tea.NameInMap;
-import com.aliyun.tea.TeaModel;
-import com.aliyun.tea.Validation;
+import com.basic.http.NameInMap;
+import com.basic.http.HttpModel;
+import com.basic.http.Validation;
 
 /**
  * @author zhongyu
  * @version : Config.java, v 0.1 2020年05月22日 4:25 下午 zhongyu Exp $
  */
-public class Config extends TeaModel {
+public class Config extends HttpModel {
 
     /**
      * 通信协议，通常填写https

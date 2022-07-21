@@ -1,9 +1,11 @@
 // This file is auto-generated, don't edit it. Thanks.
 package com.alipay.easysdk.payment.huabei.models;
 
-import com.aliyun.tea.*;
+import com.basic.http.NameInMap;
+import com.basic.http.HttpModel;
+import com.basic.http.Validation;
 
-public class AlipayTradeCreateResponse extends TeaModel {
+public class AlipayTradeCreateResponse extends HttpModel {
     // 响应原始字符串
     @NameInMap("http_body")
     @Validation(required = true)
@@ -35,7 +37,7 @@ public class AlipayTradeCreateResponse extends TeaModel {
 
     public static AlipayTradeCreateResponse build(java.util.Map<String, ?> map) throws Exception {
         AlipayTradeCreateResponse self = new AlipayTradeCreateResponse();
-        return TeaModel.build(map, self);
+        return HttpModel.build(map, self);
     }
 
     public AlipayTradeCreateResponse setHttpBody(String httpBody) {

@@ -2,7 +2,7 @@ package com.alipay.easysdk.kms.aliyun;
 
 
 import com.alipay.easysdk.kernel.Config;
-import com.aliyun.tea.*;
+import com.basic.http.NameInMap;
 
 /**
  * KMS配置参数模型

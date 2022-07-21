@@ -5,7 +5,7 @@ package com.alipay.easysdk.kernel.util;
 
 import com.alipay.easysdk.kernel.AlipayConstants;
 import com.alipay.easysdk.util.StreamUtil;
-import com.aliyun.tea.utils.StringUtils;
+import com.basic.http.utils.StringUtils;
 import org.bouncycastle.util.encoders.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

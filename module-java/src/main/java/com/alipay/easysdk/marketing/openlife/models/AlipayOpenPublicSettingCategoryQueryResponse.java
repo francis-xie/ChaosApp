@@ -1,9 +1,11 @@
 // This file is auto-generated, don't edit it. Thanks.
 package com.alipay.easysdk.marketing.openlife.models;
 
-import com.aliyun.tea.*;
+import com.basic.http.NameInMap;
+import com.basic.http.HttpModel;
+import com.basic.http.Validation;
 
-public class AlipayOpenPublicSettingCategoryQueryResponse extends TeaModel {
+public class AlipayOpenPublicSettingCategoryQueryResponse extends HttpModel {
     // 响应原始字符串
     @NameInMap("http_body")
     @Validation(required = true)
@@ -35,7 +37,7 @@ public class AlipayOpenPublicSettingCategoryQueryResponse extends TeaModel {
 
     public static AlipayOpenPublicSettingCategoryQueryResponse build(java.util.Map<String, ?> map) throws Exception {
         AlipayOpenPublicSettingCategoryQueryResponse self = new AlipayOpenPublicSettingCategoryQueryResponse();
-        return TeaModel.build(map, self);
+        return HttpModel.build(map, self);
     }
 
     public AlipayOpenPublicSettingCategoryQueryResponse setHttpBody(String httpBody) {

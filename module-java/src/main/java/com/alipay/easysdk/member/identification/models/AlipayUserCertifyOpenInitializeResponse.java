@@ -1,9 +1,11 @@
 // This file is auto-generated, don't edit it. Thanks.
 package com.alipay.easysdk.member.identification.models;
 
-import com.aliyun.tea.*;
+import com.basic.http.NameInMap;
+import com.basic.http.HttpModel;
+import com.basic.http.Validation;
 
-public class AlipayUserCertifyOpenInitializeResponse extends TeaModel {
+public class AlipayUserCertifyOpenInitializeResponse extends HttpModel {
     // 响应原始字符串
     @NameInMap("http_body")
     @Validation(required = true)
@@ -31,7 +33,7 @@ public class AlipayUserCertifyOpenInitializeResponse extends TeaModel {
 
     public static AlipayUserCertifyOpenInitializeResponse build(java.util.Map<String, ?> map) throws Exception {
         AlipayUserCertifyOpenInitializeResponse self = new AlipayUserCertifyOpenInitializeResponse();
-        return TeaModel.build(map, self);
+        return HttpModel.build(map, self);
     }
 
     public AlipayUserCertifyOpenInitializeResponse setHttpBody(String httpBody) {

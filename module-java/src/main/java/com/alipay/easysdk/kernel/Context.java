@@ -5,8 +5,7 @@
 package com.alipay.easysdk.kernel;
 
 import com.alipay.easysdk.kernel.util.Signer;
-import com.aliyun.tea.TeaModel;
-import com.google.common.base.Preconditions;
+import com.basic.http.HttpModel;
 import com.google.common.base.Strings;
 
 import java.util.Map;
@@ -37,7 +36,7 @@ public class Context {
     private Signer signer;
 
     public Context(Config options, String sdkVersion) throws Exception {
-        config = TeaModel.buildMap(options);
+        config = HttpModel.buildMap(options);
         this.sdkVersion = sdkVersion;
 //        Preconditions.checkArgument(AlipayConstants.RSA2.equals(getConfig(AlipayConstants.SIGN_TYPE_CONFIG_KEY)),
 //                "Alipay Easy SDK只允许使用RSA2签名方式，RSA签名方式由于安全性相比RSA2弱已不再推荐。");

@@ -1,9 +1,11 @@
 // This file is auto-generated, don't edit it. Thanks.
 package com.alipay.easysdk.marketing.pass.models;
 
-import com.aliyun.tea.*;
+import com.basic.http.NameInMap;
+import com.basic.http.HttpModel;
+import com.basic.http.Validation;
 
-public class AlipayPassTemplateUpdateResponse extends TeaModel {
+public class AlipayPassTemplateUpdateResponse extends HttpModel {
     // 响应原始字符串
     @NameInMap("http_body")
     @Validation(required = true)
@@ -35,7 +37,7 @@ public class AlipayPassTemplateUpdateResponse extends TeaModel {
 
     public static AlipayPassTemplateUpdateResponse build(java.util.Map<String, ?> map) throws Exception {
         AlipayPassTemplateUpdateResponse self = new AlipayPassTemplateUpdateResponse();
-        return TeaModel.build(map, self);
+        return HttpModel.build(map, self);
     }
 
     public AlipayPassTemplateUpdateResponse setHttpBody(String httpBody) {

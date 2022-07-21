@@ -1,8 +1,10 @@
 // This file is auto-generated, don't edit it. Thanks.
 package com.alipay.easysdk.payment.app;
 
-import com.aliyun.tea.*;
 import com.alipay.easysdk.payment.app.models.*;
+import com.basic.http.HttpConverter;
+import com.basic.http.HttpModel;
+import com.basic.http.HttpPair;
 
 public class Client {
 
@@ -13,29 +15,29 @@ public class Client {
 
 
     public AlipayTradeAppPayResponse pay(String subject, String outTradeNo, String totalAmount) throws Exception {
-        java.util.Map<String, String> systemParams = TeaConverter.buildMap(
-            new TeaPair("method", "alipay.trade.app.pay"),
-            new TeaPair("app_id", _kernel.getConfig("appId")),
-            new TeaPair("timestamp", _kernel.getTimestamp()),
-            new TeaPair("format", "json"),
-            new TeaPair("version", "1.0"),
-            new TeaPair("alipay_sdk", _kernel.getSdkVersion()),
-            new TeaPair("charset", "UTF-8"),
-            new TeaPair("sign_type", _kernel.getConfig("signType")),
-            new TeaPair("app_cert_sn", _kernel.getMerchantCertSN()),
-            new TeaPair("alipay_root_cert_sn", _kernel.getAlipayRootCertSN())
+        java.util.Map<String, String> systemParams = HttpConverter.buildMap(
+            new HttpPair("method", "alipay.trade.app.pay"),
+            new HttpPair("app_id", _kernel.getConfig("appId")),
+            new HttpPair("timestamp", _kernel.getTimestamp()),
+            new HttpPair("format", "json"),
+            new HttpPair("version", "1.0"),
+            new HttpPair("alipay_sdk", _kernel.getSdkVersion()),
+            new HttpPair("charset", "UTF-8"),
+            new HttpPair("sign_type", _kernel.getConfig("signType")),
+            new HttpPair("app_cert_sn", _kernel.getMerchantCertSN()),
+            new HttpPair("alipay_root_cert_sn", _kernel.getAlipayRootCertSN())
         );
-        java.util.Map<String, Object> bizParams = TeaConverter.buildMap(
-            new TeaPair("subject", subject),
-            new TeaPair("out_trade_no", outTradeNo),
-            new TeaPair("total_amount", totalAmount)
+        java.util.Map<String, Object> bizParams = HttpConverter.buildMap(
+            new HttpPair("subject", subject),
+            new HttpPair("out_trade_no", outTradeNo),
+            new HttpPair("total_amount", totalAmount)
         );
         java.util.Map<String, String> textParams = new java.util.HashMap<>();
         String sign = _kernel.sign(systemParams, bizParams, textParams, _kernel.getConfig("merchantPrivateKey"));
-        java.util.Map<String, String> response = TeaConverter.buildMap(
-            new TeaPair("body", _kernel.generateOrderString(systemParams, bizParams, textParams, sign))
+        java.util.Map<String, String> response = HttpConverter.buildMap(
+            new HttpPair("body", _kernel.generateOrderString(systemParams, bizParams, textParams, sign))
         );
-        return TeaModel.toModel(response, new AlipayTradeAppPayResponse());
+        return HttpModel.toModel(response, new AlipayTradeAppPayResponse());
     }
     
     /**

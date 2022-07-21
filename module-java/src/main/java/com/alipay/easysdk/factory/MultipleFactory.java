@@ -10,7 +10,7 @@ import com.alipay.easysdk.kernel.Config;
 import com.alipay.easysdk.kernel.Context;
 import com.alipay.easysdk.kms.aliyun.AliyunKMSClient;
 import com.alipay.easysdk.kms.aliyun.AliyunKMSSigner;
-import com.aliyun.tea.TeaModel;
+import com.basic.http.HttpModel;
 
 /**
  * @author junying
@@ -35,7 +35,7 @@ public class MultipleFactory {
             context = new Context(options, SDK_VERSION);
 
             if (AlipayConstants.AliyunKMS.equals(context.getConfig(AlipayConstants.SIGN_PROVIDER_CONFIG_KEY))) {
-                context.setSigner(new AliyunKMSSigner(new AliyunKMSClient(TeaModel.buildMap(options))));
+                context.setSigner(new AliyunKMSSigner(new AliyunKMSClient(HttpModel.buildMap(options))));
             }
 
         } catch (Exception e) {

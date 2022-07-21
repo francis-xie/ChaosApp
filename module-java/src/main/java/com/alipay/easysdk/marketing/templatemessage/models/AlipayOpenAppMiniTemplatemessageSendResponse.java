@@ -1,9 +1,11 @@
 // This file is auto-generated, don't edit it. Thanks.
 package com.alipay.easysdk.marketing.templatemessage.models;
 
-import com.aliyun.tea.*;
+import com.basic.http.NameInMap;
+import com.basic.http.HttpModel;
+import com.basic.http.Validation;
 
-public class AlipayOpenAppMiniTemplatemessageSendResponse extends TeaModel {
+public class AlipayOpenAppMiniTemplatemessageSendResponse extends HttpModel {
     // 响应原始字符串
     @NameInMap("http_body")
     @Validation(required = true)
@@ -27,7 +29,7 @@ public class AlipayOpenAppMiniTemplatemessageSendResponse extends TeaModel {
 
     public static AlipayOpenAppMiniTemplatemessageSendResponse build(java.util.Map<String, ?> map) throws Exception {
         AlipayOpenAppMiniTemplatemessageSendResponse self = new AlipayOpenAppMiniTemplatemessageSendResponse();
-        return TeaModel.build(map, self);
+        return HttpModel.build(map, self);
     }
 
     public AlipayOpenAppMiniTemplatemessageSendResponse setHttpBody(String httpBody) {

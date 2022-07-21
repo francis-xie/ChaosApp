@@ -1,9 +1,11 @@
 // This file is auto-generated, don't edit it. Thanks.
 package com.alipay.easysdk.payment.facetoface.models;
 
-import com.aliyun.tea.*;
+import com.basic.http.NameInMap;
+import com.basic.http.HttpModel;
+import com.basic.http.Validation;
 
-public class VoucherDetail extends TeaModel {
+public class VoucherDetail extends HttpModel {
     @NameInMap("id")
     @Validation(required = true)
     public String id;
@@ -50,7 +52,7 @@ public class VoucherDetail extends TeaModel {
 
     public static VoucherDetail build(java.util.Map<String, ?> map) throws Exception {
         VoucherDetail self = new VoucherDetail();
-        return TeaModel.build(map, self);
+        return HttpModel.build(map, self);
     }
 
     public VoucherDetail setId(String id) {

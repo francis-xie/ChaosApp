@@ -1,9 +1,11 @@
 // This file is auto-generated, don't edit it. Thanks.
 package com.alipay.easysdk.base.qrcode.models;
 
-import com.aliyun.tea.*;
+import com.basic.http.NameInMap;
+import com.basic.http.HttpModel;
+import com.basic.http.Validation;
 
-public class AlipayOpenAppQrcodeCreateResponse extends TeaModel {
+public class AlipayOpenAppQrcodeCreateResponse extends HttpModel {
     // 响应原始字符串
     @NameInMap("http_body")
     @Validation(required = true)
@@ -31,7 +33,7 @@ public class AlipayOpenAppQrcodeCreateResponse extends TeaModel {
 
     public static AlipayOpenAppQrcodeCreateResponse build(java.util.Map<String, ?> map) throws Exception {
         AlipayOpenAppQrcodeCreateResponse self = new AlipayOpenAppQrcodeCreateResponse();
-        return TeaModel.build(map, self);
+        return HttpModel.build(map, self);
     }
 
     public AlipayOpenAppQrcodeCreateResponse setHttpBody(String httpBody) {

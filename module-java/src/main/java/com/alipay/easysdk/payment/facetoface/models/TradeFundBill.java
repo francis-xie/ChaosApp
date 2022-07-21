@@ -1,9 +1,11 @@
 // This file is auto-generated, don't edit it. Thanks.
 package com.alipay.easysdk.payment.facetoface.models;
 
-import com.aliyun.tea.*;
+import com.basic.http.NameInMap;
+import com.basic.http.HttpModel;
+import com.basic.http.Validation;
 
-public class TradeFundBill extends TeaModel {
+public class TradeFundBill extends HttpModel {
     @NameInMap("fund_channel")
     @Validation(required = true)
     public String fundChannel;
@@ -22,7 +24,7 @@ public class TradeFundBill extends TeaModel {
 
     public static TradeFundBill build(java.util.Map<String, ?> map) throws Exception {
         TradeFundBill self = new TradeFundBill();
-        return TeaModel.build(map, self);
+        return HttpModel.build(map, self);
     }
 
     public TradeFundBill setFundChannel(String fundChannel) {

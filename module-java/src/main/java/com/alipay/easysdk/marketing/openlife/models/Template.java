@@ -1,9 +1,11 @@
 // This file is auto-generated, don't edit it. Thanks.
 package com.alipay.easysdk.marketing.openlife.models;
 
-import com.aliyun.tea.*;
+import com.basic.http.NameInMap;
+import com.basic.http.HttpModel;
+import com.basic.http.Validation;
 
-public class Template extends TeaModel {
+public class Template extends HttpModel {
     @NameInMap("template_id")
     @Validation(required = true)
     public String templateId;
@@ -14,7 +16,7 @@ public class Template extends TeaModel {
 
     public static Template build(java.util.Map<String, ?> map) throws Exception {
         Template self = new Template();
-        return TeaModel.build(map, self);
+        return HttpModel.build(map, self);
     }
 
     public Template setTemplateId(String templateId) {

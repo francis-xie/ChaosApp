@@ -1,9 +1,11 @@
 // This file is auto-generated, don't edit it. Thanks.
 package com.alipay.easysdk.marketing.openlife.models;
 
-import com.aliyun.tea.*;
+import com.basic.http.NameInMap;
+import com.basic.http.HttpModel;
+import com.basic.http.Validation;
 
-public class Context extends TeaModel {
+public class Context extends HttpModel {
     @NameInMap("head_color")
     @Validation(required = true)
     public String headColor;
@@ -30,7 +32,7 @@ public class Context extends TeaModel {
 
     public static Context build(java.util.Map<String, ?> map) throws Exception {
         Context self = new Context();
-        return TeaModel.build(map, self);
+        return HttpModel.build(map, self);
     }
 
     public Context setHeadColor(String headColor) {

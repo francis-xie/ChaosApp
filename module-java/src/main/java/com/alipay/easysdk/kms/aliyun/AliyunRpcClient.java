@@ -10,17 +10,17 @@ import com.alipay.easysdk.kms.aliyun.credentials.provider.RamRoleArnCredentialsP
 import com.alipay.easysdk.kms.aliyun.credentials.provider.StaticCredentialsProvider;
 import com.alipay.easysdk.kms.aliyun.credentials.utils.CredentialType;
 import com.alipay.easysdk.kms.aliyun.models.RuntimeOptions;
-import com.aliyun.tea.Tea;
-import com.aliyun.tea.TeaConverter;
-import com.aliyun.tea.TeaException;
-import com.aliyun.tea.TeaModel;
-import com.aliyun.tea.TeaPair;
-import com.aliyun.tea.TeaRequest;
-import com.aliyun.tea.TeaResponse;
-import com.aliyun.tea.TeaRetryableException;
-import com.aliyun.tea.TeaUnretryableException;
-import com.aliyun.tea.ValidateException;
-import com.aliyun.tea.utils.StringUtils;
+import com.basic.http.Http;
+import com.basic.http.HttpConverter;
+import com.basic.http.HttpException;
+import com.basic.http.HttpModel;
+import com.basic.http.HttpPair;
+import com.basic.http.HttpRequest;
+import com.basic.http.HttpResponse;
+import com.basic.http.HttpRetryableException;
+import com.basic.http.HttpUnretryableException;
+import com.basic.http.ValidateException;
+import com.basic.http.utils.StringUtils;
 import com.google.gson.Gson;
 import org.bouncycastle.util.encoders.Base64;
 
@@ -173,7 +173,7 @@ public class AliyunRpcClient {
         return result.toString();
     }
 
-    public static void validateModel(TeaModel m) throws Exception {
+    public static void validateModel(HttpModel m) throws Exception {
         if (null == m) {
             throw new ValidateException("parameter is not allowed as null");
         } else {
@@ -261,57 +261,57 @@ public class AliyunRpcClient {
 
     public Map<String, Object> doRequest(String action, String protocol, String method, String version, Map<String, Object> query,
                                          Map<String, Object> body, RuntimeOptions runtime) throws Exception {
-        Map<String, Object> runtime_ = TeaConverter.buildMap(
-                new TeaPair("readTimeout", runtime.readTimeout),
-                new TeaPair("connectTimeout", runtime.connectTimeout),
-                new TeaPair("retry", TeaConverter.buildMap(
-                        new TeaPair("maxAttempts", runtime.maxAttempts)
+        Map<String, Object> runtime_ = HttpConverter.buildMap(
+                new HttpPair("readTimeout", runtime.readTimeout),
+                new HttpPair("connectTimeout", runtime.connectTimeout),
+                new HttpPair("retry", HttpConverter.buildMap(
+                        new HttpPair("maxAttempts", runtime.maxAttempts)
                 )),
-                new TeaPair("backoff", TeaConverter.buildMap(
-                        new TeaPair("policy", runtime.backoffPolicy),
-                        new TeaPair("period", runtime.backoffPeriod)
+                new HttpPair("backoff", HttpConverter.buildMap(
+                        new HttpPair("policy", runtime.backoffPolicy),
+                        new HttpPair("period", runtime.backoffPeriod)
                 )),
-                new TeaPair("ignoreSSL", runtime.ignoreSSL)
+                new HttpPair("ignoreSSL", runtime.ignoreSSL)
         );
 
-        TeaRequest _lastRequest = null;
+        HttpRequest _lastRequest = null;
         long _now = System.currentTimeMillis();
         int _retryTimes = 0;
-        while (Tea.allowRetry((Map<String, Object>) runtime_.get("retry"), _retryTimes, _now)) {
+        while (Http.allowRetry((Map<String, Object>) runtime_.get("retry"), _retryTimes, _now)) {
             if (_retryTimes > 0) {
-                int backoffTime = Tea.getBackoffTime(runtime_.get("backoff"), _retryTimes);
+                int backoffTime = Http.getBackoffTime(runtime_.get("backoff"), _retryTimes);
                 if (backoffTime > 0) {
-                    Tea.sleep(backoffTime);
+                    Http.sleep(backoffTime);
                 }
             }
             _retryTimes = _retryTimes + 1;
             try {
-                TeaRequest request_ = new TeaRequest();
+                HttpRequest request_ = new HttpRequest();
                 request_.protocol = protocol;
                 request_.method = method;
                 request_.pathname = "/";
-                request_.query = TeaConverter.merge(String.class,
-                        TeaConverter.buildMap(
-                                new TeaPair("Action", action),
-                                new TeaPair("Format", this.format),
-                                new TeaPair("Timestamp", getTimestamp()),
-                                new TeaPair("Version", version),
-                                new TeaPair("SignatureNonce", getNonce())
+                request_.query = HttpConverter.merge(String.class,
+                        HttpConverter.buildMap(
+                                new HttpPair("Action", action),
+                                new HttpPair("Format", this.format),
+                                new HttpPair("Timestamp", getTimestamp()),
+                                new HttpPair("Version", version),
+                                new HttpPair("SignatureNonce", getNonce())
                         ),
                         query
                 );
-                request_.headers = TeaConverter.buildMap(
-                        new TeaPair("host", this.endpoint)
+                request_.headers = HttpConverter.buildMap(
+                        new HttpPair("host", this.endpoint)
                 );
                 if (!isUnset(body)) {
                     Map<String, Object> tmp = anyifyMapValue(body);
-                    request_.body = Tea.toReadable(toFormString(tmp));
+                    request_.body = Http.toReadable(toFormString(tmp));
                     request_.headers.put("content-type", "application/x-www-form-urlencoded");
                 }
 
                 ICredentials credentials = this.credentialsProvider.getCredentials();
                 if (credentials == null) {
-                    throw new TeaRetryableException();
+                    throw new HttpRetryableException();
                 }
 
                 request_.query.put("SignatureMethod", this.signatureMethod);
@@ -320,34 +320,34 @@ public class AliyunRpcClient {
                 if (!StringUtils.isEmpty(credentials.getSecurityToken())) {
                     request_.query.put("SecurityToken", credentials.getSecurityToken());
                 }
-                Map<String, String> signedParam = TeaConverter.merge(String.class,
+                Map<String, String> signedParam = HttpConverter.merge(String.class,
                         request_.query,
                         body
                 );
                 request_.query.put("Signature", getSignature(signedParam, request_.method, credentials.getAccessKeySecret()));
 
                 _lastRequest = request_;
-                TeaResponse response_ = Tea.doAction(request_, runtime_);
+                HttpResponse response_ = Http.doAction(request_, runtime_);
 
                 Object obj = readAsJSON(response_.body);
                 Map<String, Object> res = assertAsMap(obj);
                 if (is4xx(response_.statusCode) || is5xx(response_.statusCode)) {
-                    throw new TeaException(TeaConverter.buildMap(
-                            new TeaPair("message", res.get("Message")),
-                            new TeaPair("data", res),
-                            new TeaPair("code", res.get("Code"))
+                    throw new HttpException(HttpConverter.buildMap(
+                            new HttpPair("message", res.get("Message")),
+                            new HttpPair("data", res),
+                            new HttpPair("code", res.get("Code"))
                     ));
                 }
 
                 return res;
             } catch (Exception e) {
-                if (Tea.isRetryable(e)) {
+                if (Http.isRetryable(e)) {
                     continue;
                 }
                 throw e;
             }
         }
 
-        throw new TeaUnretryableException(_lastRequest);
+        throw new HttpUnretryableException(_lastRequest);
     }
 }

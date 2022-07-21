@@ -4,7 +4,7 @@
  */
 package com.alipay.easysdk.kernel.util;
 
-import com.aliyun.tea.TeaModel;
+import com.basic.http.HttpModel;
 import com.google.common.base.Strings;
 
 import java.lang.reflect.Field;
@@ -25,7 +25,7 @@ public class ResponseChecker {
      * @param response 响应对象
      * @return true：成功；false：失败
      */
-    public static boolean success(TeaModel response) {
+    public static boolean success(HttpModel response) {
         try {
             Field subCodeField = response.getClass().getField(SUB_CODE_FIELD_NAME);
             subCodeField.setAccessible(true);

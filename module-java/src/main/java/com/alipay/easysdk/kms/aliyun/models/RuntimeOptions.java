@@ -1,11 +1,11 @@
 package com.alipay.easysdk.kms.aliyun.models;
 
-import com.aliyun.tea.NameInMap;
-import com.aliyun.tea.TeaModel;
+import com.basic.http.NameInMap;
+import com.basic.http.HttpModel;
 
 import java.util.Map;
 
-public class RuntimeOptions extends TeaModel {
+public class RuntimeOptions extends HttpModel {
     @NameInMap("ignoreSSL")
     public Boolean ignoreSSL;
     @NameInMap("maxAttempts")
@@ -21,6 +21,6 @@ public class RuntimeOptions extends TeaModel {
 
     public static RuntimeOptions build(Map<String, ?> map) throws Exception {
         RuntimeOptions self = new RuntimeOptions();
-        return TeaModel.build(map, self);
+        return HttpModel.build(map, self);
     }
 }

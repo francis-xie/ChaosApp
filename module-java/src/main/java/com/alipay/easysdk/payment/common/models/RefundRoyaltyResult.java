@@ -1,9 +1,11 @@
 // This file is auto-generated, don't edit it. Thanks.
 package com.alipay.easysdk.payment.common.models;
 
-import com.aliyun.tea.*;
+import com.basic.http.NameInMap;
+import com.basic.http.HttpModel;
+import com.basic.http.Validation;
 
-public class RefundRoyaltyResult extends TeaModel {
+public class RefundRoyaltyResult extends HttpModel {
     @NameInMap("refund_amount")
     @Validation(required = true)
     public String refundAmount;
@@ -34,7 +36,7 @@ public class RefundRoyaltyResult extends TeaModel {
 
     public static RefundRoyaltyResult build(java.util.Map<String, ?> map) throws Exception {
         RefundRoyaltyResult self = new RefundRoyaltyResult();
-        return TeaModel.build(map, self);
+        return HttpModel.build(map, self);
     }
 
     public RefundRoyaltyResult setRefundAmount(String refundAmount) {

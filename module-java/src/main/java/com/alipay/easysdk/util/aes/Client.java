@@ -1,7 +1,7 @@
 // This file is auto-generated, don't edit it. Thanks.
 package com.alipay.easysdk.util.aes;
 
-import com.aliyun.tea.*;
+import com.basic.http.*;
 
 
 public class Client {

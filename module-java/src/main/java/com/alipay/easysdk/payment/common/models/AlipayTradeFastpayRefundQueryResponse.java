@@ -1,9 +1,11 @@
 // This file is auto-generated, don't edit it. Thanks.
 package com.alipay.easysdk.payment.common.models;
 
-import com.aliyun.tea.*;
+import com.basic.http.NameInMap;
+import com.basic.http.HttpModel;
+import com.basic.http.Validation;
 
-public class AlipayTradeFastpayRefundQueryResponse extends TeaModel {
+public class AlipayTradeFastpayRefundQueryResponse extends HttpModel {
     // 响应原始字符串
     @NameInMap("http_body")
     @Validation(required = true)
@@ -99,7 +101,7 @@ public class AlipayTradeFastpayRefundQueryResponse extends TeaModel {
 
     public static AlipayTradeFastpayRefundQueryResponse build(java.util.Map<String, ?> map) throws Exception {
         AlipayTradeFastpayRefundQueryResponse self = new AlipayTradeFastpayRefundQueryResponse();
-        return TeaModel.build(map, self);
+        return HttpModel.build(map, self);
     }
 
     public AlipayTradeFastpayRefundQueryResponse setHttpBody(String httpBody) {

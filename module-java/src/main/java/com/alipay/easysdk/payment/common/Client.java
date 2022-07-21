@@ -1,10 +1,9 @@
 // This file is auto-generated, don't edit it. Thanks.
 package com.alipay.easysdk.payment.common;
 
-import com.alipay.easysdk.kernel.AlipayConstants;
 import com.alipay.easysdk.kernel.util.JsonUtil;
-import com.aliyun.tea.*;
 import com.alipay.easysdk.payment.common.models.*;
+import com.basic.http.*;
 
 public class Client {
 
@@ -14,134 +13,134 @@ public class Client {
     }
 
     public AlipayTradeCreateResponse create(String subject, String outTradeNo, String totalAmount, String buyerId) throws Exception {
-        java.util.Map<String, Object> runtime_ = TeaConverter.buildMap(
-            new TeaPair("ignoreSSL", _kernel.getConfig("ignoreSSL")),
-            new TeaPair("httpProxy", _kernel.getConfig("httpProxy")),
-            new TeaPair("connectTimeout", 15000),
-            new TeaPair("readTimeout", 15000),
-            new TeaPair("retry", TeaConverter.buildMap(
-                new TeaPair("maxAttempts", 0)
+        java.util.Map<String, Object> runtime_ = HttpConverter.buildMap(
+            new HttpPair("ignoreSSL", _kernel.getConfig("ignoreSSL")),
+            new HttpPair("httpProxy", _kernel.getConfig("httpProxy")),
+            new HttpPair("connectTimeout", 15000),
+            new HttpPair("readTimeout", 15000),
+            new HttpPair("retry", HttpConverter.buildMap(
+                new HttpPair("maxAttempts", 0)
             ))
         );
 
-        TeaRequest _lastRequest = null;
+        HttpRequest _lastRequest = null;
         long _now = System.currentTimeMillis();
         int _retryTimes = 0;
-        while (Tea.allowRetry((java.util.Map<String, Object>) runtime_.get("retry"), _retryTimes, _now)) {
+        while (Http.allowRetry((java.util.Map<String, Object>) runtime_.get("retry"), _retryTimes, _now)) {
             if (_retryTimes > 0) {
-                int backoffTime = Tea.getBackoffTime(runtime_.get("backoff"), _retryTimes);
+                int backoffTime = Http.getBackoffTime(runtime_.get("backoff"), _retryTimes);
                 if (backoffTime > 0) {
-                    Tea.sleep(backoffTime);
+                    Http.sleep(backoffTime);
                 }
             }
             _retryTimes = _retryTimes + 1;
             try {
-                TeaRequest request_ = new TeaRequest();
-                java.util.Map<String, String> systemParams = TeaConverter.buildMap(
-                    new TeaPair("method", "alipay.trade.create"),
-                    new TeaPair("app_id", _kernel.getConfig("appId")),
-                    new TeaPair("timestamp", _kernel.getTimestamp()),
-                    new TeaPair("format", "json"),
-                    new TeaPair("version", "1.0"),
-                    new TeaPair("alipay_sdk", _kernel.getSdkVersion()),
-                    new TeaPair("charset", "UTF-8"),
-                    new TeaPair("sign_type", _kernel.getConfig("signType")),
-                    new TeaPair("app_cert_sn", _kernel.getMerchantCertSN()),
-                    new TeaPair("alipay_root_cert_sn", _kernel.getAlipayRootCertSN())
+                HttpRequest request_ = new HttpRequest();
+                java.util.Map<String, String> systemParams = HttpConverter.buildMap(
+                    new HttpPair("method", "alipay.trade.create"),
+                    new HttpPair("app_id", _kernel.getConfig("appId")),
+                    new HttpPair("timestamp", _kernel.getTimestamp()),
+                    new HttpPair("format", "json"),
+                    new HttpPair("version", "1.0"),
+                    new HttpPair("alipay_sdk", _kernel.getSdkVersion()),
+                    new HttpPair("charset", "UTF-8"),
+                    new HttpPair("sign_type", _kernel.getConfig("signType")),
+                    new HttpPair("app_cert_sn", _kernel.getMerchantCertSN()),
+                    new HttpPair("alipay_root_cert_sn", _kernel.getAlipayRootCertSN())
                 );
-                java.util.Map<String, Object> bizParams = TeaConverter.buildMap(
-                    new TeaPair("subject", subject),
-                    new TeaPair("out_trade_no", outTradeNo),
-                    new TeaPair("total_amount", totalAmount),
-                    new TeaPair("buyer_id", buyerId)
+                java.util.Map<String, Object> bizParams = HttpConverter.buildMap(
+                    new HttpPair("subject", subject),
+                    new HttpPair("out_trade_no", outTradeNo),
+                    new HttpPair("total_amount", totalAmount),
+                    new HttpPair("buyer_id", buyerId)
                 );
                 java.util.Map<String, String> textParams = new java.util.HashMap<>();
                 request_.protocol = _kernel.getConfig("protocol");
                 request_.method = "POST";
                 request_.pathname = "/gateway.do";
-                request_.headers = TeaConverter.buildMap(
-                    new TeaPair("host", _kernel.getConfig("gatewayHost")),
-                    new TeaPair("content-type", "application/x-www-form-urlencoded;charset=utf-8")
+                request_.headers = HttpConverter.buildMap(
+                    new HttpPair("host", _kernel.getConfig("gatewayHost")),
+                    new HttpPair("content-type", "application/x-www-form-urlencoded;charset=utf-8")
                 );
-                request_.query = _kernel.sortMap(TeaConverter.merge(String.class,
-                    TeaConverter.buildMap(
-                        new TeaPair("sign", _kernel.sign(systemParams, bizParams, textParams, _kernel.getConfig("merchantPrivateKey")))
+                request_.query = _kernel.sortMap(HttpConverter.merge(String.class,
+                    HttpConverter.buildMap(
+                        new HttpPair("sign", _kernel.sign(systemParams, bizParams, textParams, _kernel.getConfig("merchantPrivateKey")))
                     ),
                     systemParams,
                     textParams
                 ));
-                request_.body = Tea.toReadable(_kernel.toUrlEncodedRequestBody(bizParams));
+                request_.body = Http.toReadable(_kernel.toUrlEncodedRequestBody(bizParams));
                 _lastRequest = request_;
-                TeaResponse response_ = Tea.doAction(request_, runtime_);
+                HttpResponse response_ = Http.doAction(request_, runtime_);
 
                 java.util.Map<String, Object> respMap = _kernel.readAsJson(response_, "alipay.trade.create");
                 if (_kernel.isCertMode()) {
                     if (_kernel.verify(respMap, _kernel.extractAlipayPublicKey(_kernel.getAlipayCertSN(respMap)))) {
-                        return TeaModel.toModel(_kernel.toRespModel(respMap), new AlipayTradeCreateResponse());
+                        return HttpModel.toModel(_kernel.toRespModel(respMap), new AlipayTradeCreateResponse());
                     }
 
                 } else {
                     if (_kernel.verify(respMap, _kernel.getConfig("alipayPublicKey"))) {
-                        return TeaModel.toModel(_kernel.toRespModel(respMap), new AlipayTradeCreateResponse());
+                        return HttpModel.toModel(_kernel.toRespModel(respMap), new AlipayTradeCreateResponse());
                     }
 
                 }
 
-                throw new TeaException(TeaConverter.buildMap(
-                    new TeaPair("message", "验签失败，请检查支付宝公钥设置是否正确。")
+                throw new HttpException(HttpConverter.buildMap(
+                    new HttpPair("message", "验签失败，请检查支付宝公钥设置是否正确。")
                 ));
             } catch (Exception e) {
-                if (Tea.isRetryable(e)) {
+                if (Http.isRetryable(e)) {
                     continue;
                 }
                 throw new RuntimeException(e);
             }
         }
 
-        throw new TeaUnretryableException(_lastRequest);
+        throw new HttpUnretryableException(_lastRequest);
     }
 
     public AlipayTradeQueryResponse query(String outTradeNo) throws Exception {
-        java.util.Map<String, Object> runtime_ = TeaConverter.buildMap(
-            new TeaPair("ignoreSSL", _kernel.getConfig("ignoreSSL")),
-            new TeaPair("httpProxy", _kernel.getConfig("httpProxy")),
-            new TeaPair("connectTimeout", 15000),
-            new TeaPair("readTimeout", 15000),
-            new TeaPair("retry", TeaConverter.buildMap(
-                new TeaPair("maxAttempts", 0)
+        java.util.Map<String, Object> runtime_ = HttpConverter.buildMap(
+            new HttpPair("ignoreSSL", _kernel.getConfig("ignoreSSL")),
+            new HttpPair("httpProxy", _kernel.getConfig("httpProxy")),
+            new HttpPair("connectTimeout", 15000),
+            new HttpPair("readTimeout", 15000),
+            new HttpPair("retry", HttpConverter.buildMap(
+                new HttpPair("maxAttempts", 0)
             ))
         );
 
-        TeaRequest _lastRequest = null;
+        HttpRequest _lastRequest = null;
         long _now = System.currentTimeMillis();
         int _retryTimes = 0;
-        while (Tea.allowRetry((java.util.Map<String, Object>) runtime_.get("retry"), _retryTimes, _now)) {
+        while (Http.allowRetry((java.util.Map<String, Object>) runtime_.get("retry"), _retryTimes, _now)) {
             if (_retryTimes > 0) {
-                int backoffTime = Tea.getBackoffTime(runtime_.get("backoff"), _retryTimes);
+                int backoffTime = Http.getBackoffTime(runtime_.get("backoff"), _retryTimes);
                 if (backoffTime > 0) {
-                    Tea.sleep(backoffTime);
+                    Http.sleep(backoffTime);
                 }
             }
             _retryTimes = _retryTimes + 1;
             try {
                 String[] str = new String[]{"TRADE_SETTLE_INFO", "fund_bill_list"
                   , "voucher_detail_list", "discount_goods_detail", "mdiscount_amount"};
-                TeaRequest request_ = new TeaRequest();
-                java.util.Map<String, String> systemParams = TeaConverter.buildMap(
-                    new TeaPair("method", "alipay.trade.query"),
-                    new TeaPair("app_id", _kernel.getConfig("appId")),
-                    new TeaPair("timestamp", _kernel.getTimestamp()),
-                    new TeaPair("format", "json"),
-                    new TeaPair("version", "1.0"),
-                    //new TeaPair("alipay_sdk", _kernel.getSdkVersion()),
-                    new TeaPair("charset", "UTF-8"),
-                    new TeaPair("sign_type", _kernel.getConfig("signType")),
-                    new TeaPair("app_cert_sn", _kernel.getMerchantCertSN()),
-                    new TeaPair("alipay_root_cert_sn", _kernel.getAlipayRootCertSN())
+                HttpRequest request_ = new HttpRequest();
+                java.util.Map<String, String> systemParams = HttpConverter.buildMap(
+                    new HttpPair("method", "alipay.trade.query"),
+                    new HttpPair("app_id", _kernel.getConfig("appId")),
+                    new HttpPair("timestamp", _kernel.getTimestamp()),
+                    new HttpPair("format", "json"),
+                    new HttpPair("version", "1.0"),
+                    //new HttpPair("alipay_sdk", _kernel.getSdkVersion()),
+                    new HttpPair("charset", "UTF-8"),
+                    new HttpPair("sign_type", _kernel.getConfig("signType")),
+                    new HttpPair("app_cert_sn", _kernel.getMerchantCertSN()),
+                    new HttpPair("alipay_root_cert_sn", _kernel.getAlipayRootCertSN())
                 );
-                java.util.Map<String, Object> bizParams = TeaConverter.buildMap(
-                    new TeaPair("out_trade_no", outTradeNo)
-                    ,new TeaPair("query_options", str)
+                java.util.Map<String, Object> bizParams = HttpConverter.buildMap(
+                    new HttpPair("out_trade_no", outTradeNo)
+                    ,new HttpPair("query_options", str)
                 );
                 systemParams.put("biz_content", JsonUtil.toJsonString(bizParams));
                 bizParams = null;
@@ -149,474 +148,474 @@ public class Client {
                 request_.protocol = _kernel.getConfig("protocol");
                 request_.method = "POST";
                 request_.pathname = "/gateway.do";
-                request_.headers = TeaConverter.buildMap(
-                    new TeaPair("host", _kernel.getConfig("gatewayHost")),
-                    new TeaPair("content-type", "application/x-www-form-urlencoded;charset=utf-8")
+                request_.headers = HttpConverter.buildMap(
+                    new HttpPair("host", _kernel.getConfig("gatewayHost")),
+                    new HttpPair("content-type", "application/x-www-form-urlencoded;charset=utf-8")
                 );
-                request_.query = _kernel.sortMap(TeaConverter.merge(String.class,
-                    TeaConverter.buildMap(
-                        new TeaPair("sign", _kernel.sign(systemParams, bizParams, textParams, _kernel.getConfig("merchantPrivateKey")))
+                request_.query = _kernel.sortMap(HttpConverter.merge(String.class,
+                    HttpConverter.buildMap(
+                        new HttpPair("sign", _kernel.sign(systemParams, bizParams, textParams, _kernel.getConfig("merchantPrivateKey")))
                     ),
                     systemParams,
                     textParams
                 ));
-                //request_.body = Tea.toReadable(_kernel.toUrlEncodedRequestBody(bizParams));
+                //request_.body = Http.toReadable(_kernel.toUrlEncodedRequestBody(bizParams));
                 _lastRequest = request_;
-                TeaResponse response_ = Tea.doAction(request_, runtime_);
+                HttpResponse response_ = Http.doAction(request_, runtime_);
 
                 java.util.Map<String, Object> respMap = _kernel.readAsJson(response_, "alipay.trade.query");
                 if (_kernel.isCertMode()) {
                     if (_kernel.verify(respMap, _kernel.extractAlipayPublicKey(_kernel.getAlipayCertSN(respMap)))) {
-                        return TeaModel.toModel(_kernel.toRespModel(respMap), new AlipayTradeQueryResponse());
+                        return HttpModel.toModel(_kernel.toRespModel(respMap), new AlipayTradeQueryResponse());
                     }
 
                 } else {
                     if (_kernel.verify(respMap, _kernel.getConfig("alipayPublicKey"))) {
-                        return TeaModel.toModel(_kernel.toRespModel(respMap), new AlipayTradeQueryResponse());
+                        return HttpModel.toModel(_kernel.toRespModel(respMap), new AlipayTradeQueryResponse());
                     }
 
                 }
 
-                throw new TeaException(TeaConverter.buildMap(
-                    new TeaPair("message", "验签失败，请检查支付宝公钥设置是否正确。")
+                throw new HttpException(HttpConverter.buildMap(
+                    new HttpPair("message", "验签失败，请检查支付宝公钥设置是否正确。")
                 ));
             } catch (Exception e) {
-                if (Tea.isRetryable(e)) {
+                if (Http.isRetryable(e)) {
                     continue;
                 }
                 throw new RuntimeException(e);
             }
         }
 
-        throw new TeaUnretryableException(_lastRequest);
+        throw new HttpUnretryableException(_lastRequest);
     }
 
     public AlipayTradeRefundResponse refund(String outTradeNo, String refundAmount) throws Exception {
-        java.util.Map<String, Object> runtime_ = TeaConverter.buildMap(
-            new TeaPair("ignoreSSL", _kernel.getConfig("ignoreSSL")),
-            new TeaPair("httpProxy", _kernel.getConfig("httpProxy")),
-            new TeaPair("connectTimeout", 15000),
-            new TeaPair("readTimeout", 15000),
-            new TeaPair("retry", TeaConverter.buildMap(
-                new TeaPair("maxAttempts", 0)
+        java.util.Map<String, Object> runtime_ = HttpConverter.buildMap(
+            new HttpPair("ignoreSSL", _kernel.getConfig("ignoreSSL")),
+            new HttpPair("httpProxy", _kernel.getConfig("httpProxy")),
+            new HttpPair("connectTimeout", 15000),
+            new HttpPair("readTimeout", 15000),
+            new HttpPair("retry", HttpConverter.buildMap(
+                new HttpPair("maxAttempts", 0)
             ))
         );
 
-        TeaRequest _lastRequest = null;
+        HttpRequest _lastRequest = null;
         long _now = System.currentTimeMillis();
         int _retryTimes = 0;
-        while (Tea.allowRetry((java.util.Map<String, Object>) runtime_.get("retry"), _retryTimes, _now)) {
+        while (Http.allowRetry((java.util.Map<String, Object>) runtime_.get("retry"), _retryTimes, _now)) {
             if (_retryTimes > 0) {
-                int backoffTime = Tea.getBackoffTime(runtime_.get("backoff"), _retryTimes);
+                int backoffTime = Http.getBackoffTime(runtime_.get("backoff"), _retryTimes);
                 if (backoffTime > 0) {
-                    Tea.sleep(backoffTime);
+                    Http.sleep(backoffTime);
                 }
             }
             _retryTimes = _retryTimes + 1;
             try {
-                TeaRequest request_ = new TeaRequest();
-                java.util.Map<String, String> systemParams = TeaConverter.buildMap(
-                    new TeaPair("method", "alipay.trade.refund"),
-                    new TeaPair("app_id", _kernel.getConfig("appId")),
-                    new TeaPair("timestamp", _kernel.getTimestamp()),
-                    new TeaPair("format", "json"),
-                    new TeaPair("version", "1.0"),
-                    new TeaPair("alipay_sdk", _kernel.getSdkVersion()),
-                    new TeaPair("charset", "UTF-8"),
-                    new TeaPair("sign_type", _kernel.getConfig("signType")),
-                    new TeaPair("app_cert_sn", _kernel.getMerchantCertSN()),
-                    new TeaPair("alipay_root_cert_sn", _kernel.getAlipayRootCertSN())
+                HttpRequest request_ = new HttpRequest();
+                java.util.Map<String, String> systemParams = HttpConverter.buildMap(
+                    new HttpPair("method", "alipay.trade.refund"),
+                    new HttpPair("app_id", _kernel.getConfig("appId")),
+                    new HttpPair("timestamp", _kernel.getTimestamp()),
+                    new HttpPair("format", "json"),
+                    new HttpPair("version", "1.0"),
+                    new HttpPair("alipay_sdk", _kernel.getSdkVersion()),
+                    new HttpPair("charset", "UTF-8"),
+                    new HttpPair("sign_type", _kernel.getConfig("signType")),
+                    new HttpPair("app_cert_sn", _kernel.getMerchantCertSN()),
+                    new HttpPair("alipay_root_cert_sn", _kernel.getAlipayRootCertSN())
                 );
-                java.util.Map<String, Object> bizParams = TeaConverter.buildMap(
-                    new TeaPair("out_trade_no", outTradeNo),
-                    new TeaPair("refund_amount", refundAmount)
+                java.util.Map<String, Object> bizParams = HttpConverter.buildMap(
+                    new HttpPair("out_trade_no", outTradeNo),
+                    new HttpPair("refund_amount", refundAmount)
                 );
                 java.util.Map<String, String> textParams = new java.util.HashMap<>();
                 request_.protocol = _kernel.getConfig("protocol");
                 request_.method = "POST";
                 request_.pathname = "/gateway.do";
-                request_.headers = TeaConverter.buildMap(
-                    new TeaPair("host", _kernel.getConfig("gatewayHost")),
-                    new TeaPair("content-type", "application/x-www-form-urlencoded;charset=utf-8")
+                request_.headers = HttpConverter.buildMap(
+                    new HttpPair("host", _kernel.getConfig("gatewayHost")),
+                    new HttpPair("content-type", "application/x-www-form-urlencoded;charset=utf-8")
                 );
-                request_.query = _kernel.sortMap(TeaConverter.merge(String.class,
-                    TeaConverter.buildMap(
-                        new TeaPair("sign", _kernel.sign(systemParams, bizParams, textParams, _kernel.getConfig("merchantPrivateKey")))
+                request_.query = _kernel.sortMap(HttpConverter.merge(String.class,
+                    HttpConverter.buildMap(
+                        new HttpPair("sign", _kernel.sign(systemParams, bizParams, textParams, _kernel.getConfig("merchantPrivateKey")))
                     ),
                     systemParams,
                     textParams
                 ));
-                request_.body = Tea.toReadable(_kernel.toUrlEncodedRequestBody(bizParams));
+                request_.body = Http.toReadable(_kernel.toUrlEncodedRequestBody(bizParams));
                 _lastRequest = request_;
-                TeaResponse response_ = Tea.doAction(request_, runtime_);
+                HttpResponse response_ = Http.doAction(request_, runtime_);
 
                 java.util.Map<String, Object> respMap = _kernel.readAsJson(response_, "alipay.trade.refund");
                 if (_kernel.isCertMode()) {
                     if (_kernel.verify(respMap, _kernel.extractAlipayPublicKey(_kernel.getAlipayCertSN(respMap)))) {
-                        return TeaModel.toModel(_kernel.toRespModel(respMap), new AlipayTradeRefundResponse());
+                        return HttpModel.toModel(_kernel.toRespModel(respMap), new AlipayTradeRefundResponse());
                     }
 
                 } else {
                     if (_kernel.verify(respMap, _kernel.getConfig("alipayPublicKey"))) {
-                        return TeaModel.toModel(_kernel.toRespModel(respMap), new AlipayTradeRefundResponse());
+                        return HttpModel.toModel(_kernel.toRespModel(respMap), new AlipayTradeRefundResponse());
                     }
 
                 }
 
-                throw new TeaException(TeaConverter.buildMap(
-                    new TeaPair("message", "验签失败，请检查支付宝公钥设置是否正确。")
+                throw new HttpException(HttpConverter.buildMap(
+                    new HttpPair("message", "验签失败，请检查支付宝公钥设置是否正确。")
                 ));
             } catch (Exception e) {
-                if (Tea.isRetryable(e)) {
+                if (Http.isRetryable(e)) {
                     continue;
                 }
                 throw new RuntimeException(e);
             }
         }
 
-        throw new TeaUnretryableException(_lastRequest);
+        throw new HttpUnretryableException(_lastRequest);
     }
 
     public AlipayTradeCloseResponse close(String outTradeNo) throws Exception {
-        java.util.Map<String, Object> runtime_ = TeaConverter.buildMap(
-            new TeaPair("ignoreSSL", _kernel.getConfig("ignoreSSL")),
-            new TeaPair("httpProxy", _kernel.getConfig("httpProxy")),
-            new TeaPair("connectTimeout", 15000),
-            new TeaPair("readTimeout", 15000),
-            new TeaPair("retry", TeaConverter.buildMap(
-                new TeaPair("maxAttempts", 0)
+        java.util.Map<String, Object> runtime_ = HttpConverter.buildMap(
+            new HttpPair("ignoreSSL", _kernel.getConfig("ignoreSSL")),
+            new HttpPair("httpProxy", _kernel.getConfig("httpProxy")),
+            new HttpPair("connectTimeout", 15000),
+            new HttpPair("readTimeout", 15000),
+            new HttpPair("retry", HttpConverter.buildMap(
+                new HttpPair("maxAttempts", 0)
             ))
         );
 
-        TeaRequest _lastRequest = null;
+        HttpRequest _lastRequest = null;
         long _now = System.currentTimeMillis();
         int _retryTimes = 0;
-        while (Tea.allowRetry((java.util.Map<String, Object>) runtime_.get("retry"), _retryTimes, _now)) {
+        while (Http.allowRetry((java.util.Map<String, Object>) runtime_.get("retry"), _retryTimes, _now)) {
             if (_retryTimes > 0) {
-                int backoffTime = Tea.getBackoffTime(runtime_.get("backoff"), _retryTimes);
+                int backoffTime = Http.getBackoffTime(runtime_.get("backoff"), _retryTimes);
                 if (backoffTime > 0) {
-                    Tea.sleep(backoffTime);
+                    Http.sleep(backoffTime);
                 }
             }
             _retryTimes = _retryTimes + 1;
             try {
-                TeaRequest request_ = new TeaRequest();
-                java.util.Map<String, String> systemParams = TeaConverter.buildMap(
-                    new TeaPair("method", "alipay.trade.close"),
-                    new TeaPair("app_id", _kernel.getConfig("appId")),
-                    new TeaPair("timestamp", _kernel.getTimestamp()),
-                    new TeaPair("format", "json"),
-                    new TeaPair("version", "1.0"),
-                    new TeaPair("alipay_sdk", _kernel.getSdkVersion()),
-                    new TeaPair("charset", "UTF-8"),
-                    new TeaPair("sign_type", _kernel.getConfig("signType")),
-                    new TeaPair("app_cert_sn", _kernel.getMerchantCertSN()),
-                    new TeaPair("alipay_root_cert_sn", _kernel.getAlipayRootCertSN())
+                HttpRequest request_ = new HttpRequest();
+                java.util.Map<String, String> systemParams = HttpConverter.buildMap(
+                    new HttpPair("method", "alipay.trade.close"),
+                    new HttpPair("app_id", _kernel.getConfig("appId")),
+                    new HttpPair("timestamp", _kernel.getTimestamp()),
+                    new HttpPair("format", "json"),
+                    new HttpPair("version", "1.0"),
+                    new HttpPair("alipay_sdk", _kernel.getSdkVersion()),
+                    new HttpPair("charset", "UTF-8"),
+                    new HttpPair("sign_type", _kernel.getConfig("signType")),
+                    new HttpPair("app_cert_sn", _kernel.getMerchantCertSN()),
+                    new HttpPair("alipay_root_cert_sn", _kernel.getAlipayRootCertSN())
                 );
-                java.util.Map<String, Object> bizParams = TeaConverter.buildMap(
-                    new TeaPair("out_trade_no", outTradeNo)
+                java.util.Map<String, Object> bizParams = HttpConverter.buildMap(
+                    new HttpPair("out_trade_no", outTradeNo)
                 );
                 java.util.Map<String, String> textParams = new java.util.HashMap<>();
                 request_.protocol = _kernel.getConfig("protocol");
                 request_.method = "POST";
                 request_.pathname = "/gateway.do";
-                request_.headers = TeaConverter.buildMap(
-                    new TeaPair("host", _kernel.getConfig("gatewayHost")),
-                    new TeaPair("content-type", "application/x-www-form-urlencoded;charset=utf-8")
+                request_.headers = HttpConverter.buildMap(
+                    new HttpPair("host", _kernel.getConfig("gatewayHost")),
+                    new HttpPair("content-type", "application/x-www-form-urlencoded;charset=utf-8")
                 );
-                request_.query = _kernel.sortMap(TeaConverter.merge(String.class,
-                    TeaConverter.buildMap(
-                        new TeaPair("sign", _kernel.sign(systemParams, bizParams, textParams, _kernel.getConfig("merchantPrivateKey")))
+                request_.query = _kernel.sortMap(HttpConverter.merge(String.class,
+                    HttpConverter.buildMap(
+                        new HttpPair("sign", _kernel.sign(systemParams, bizParams, textParams, _kernel.getConfig("merchantPrivateKey")))
                     ),
                     systemParams,
                     textParams
                 ));
-                request_.body = Tea.toReadable(_kernel.toUrlEncodedRequestBody(bizParams));
+                request_.body = Http.toReadable(_kernel.toUrlEncodedRequestBody(bizParams));
                 _lastRequest = request_;
-                TeaResponse response_ = Tea.doAction(request_, runtime_);
+                HttpResponse response_ = Http.doAction(request_, runtime_);
 
                 java.util.Map<String, Object> respMap = _kernel.readAsJson(response_, "alipay.trade.close");
                 if (_kernel.isCertMode()) {
                     if (_kernel.verify(respMap, _kernel.extractAlipayPublicKey(_kernel.getAlipayCertSN(respMap)))) {
-                        return TeaModel.toModel(_kernel.toRespModel(respMap), new AlipayTradeCloseResponse());
+                        return HttpModel.toModel(_kernel.toRespModel(respMap), new AlipayTradeCloseResponse());
                     }
 
                 } else {
                     if (_kernel.verify(respMap, _kernel.getConfig("alipayPublicKey"))) {
-                        return TeaModel.toModel(_kernel.toRespModel(respMap), new AlipayTradeCloseResponse());
+                        return HttpModel.toModel(_kernel.toRespModel(respMap), new AlipayTradeCloseResponse());
                     }
 
                 }
 
-                throw new TeaException(TeaConverter.buildMap(
-                    new TeaPair("message", "验签失败，请检查支付宝公钥设置是否正确。")
+                throw new HttpException(HttpConverter.buildMap(
+                    new HttpPair("message", "验签失败，请检查支付宝公钥设置是否正确。")
                 ));
             } catch (Exception e) {
-                if (Tea.isRetryable(e)) {
+                if (Http.isRetryable(e)) {
                     continue;
                 }
                 throw new RuntimeException(e);
             }
         }
 
-        throw new TeaUnretryableException(_lastRequest);
+        throw new HttpUnretryableException(_lastRequest);
     }
 
     public AlipayTradeCancelResponse cancel(String outTradeNo) throws Exception {
-        java.util.Map<String, Object> runtime_ = TeaConverter.buildMap(
-            new TeaPair("ignoreSSL", _kernel.getConfig("ignoreSSL")),
-            new TeaPair("httpProxy", _kernel.getConfig("httpProxy")),
-            new TeaPair("connectTimeout", 15000),
-            new TeaPair("readTimeout", 15000),
-            new TeaPair("retry", TeaConverter.buildMap(
-                new TeaPair("maxAttempts", 0)
+        java.util.Map<String, Object> runtime_ = HttpConverter.buildMap(
+            new HttpPair("ignoreSSL", _kernel.getConfig("ignoreSSL")),
+            new HttpPair("httpProxy", _kernel.getConfig("httpProxy")),
+            new HttpPair("connectTimeout", 15000),
+            new HttpPair("readTimeout", 15000),
+            new HttpPair("retry", HttpConverter.buildMap(
+                new HttpPair("maxAttempts", 0)
             ))
         );
 
-        TeaRequest _lastRequest = null;
+        HttpRequest _lastRequest = null;
         long _now = System.currentTimeMillis();
         int _retryTimes = 0;
-        while (Tea.allowRetry((java.util.Map<String, Object>) runtime_.get("retry"), _retryTimes, _now)) {
+        while (Http.allowRetry((java.util.Map<String, Object>) runtime_.get("retry"), _retryTimes, _now)) {
             if (_retryTimes > 0) {
-                int backoffTime = Tea.getBackoffTime(runtime_.get("backoff"), _retryTimes);
+                int backoffTime = Http.getBackoffTime(runtime_.get("backoff"), _retryTimes);
                 if (backoffTime > 0) {
-                    Tea.sleep(backoffTime);
+                    Http.sleep(backoffTime);
                 }
             }
             _retryTimes = _retryTimes + 1;
             try {
-                TeaRequest request_ = new TeaRequest();
-                java.util.Map<String, String> systemParams = TeaConverter.buildMap(
-                    new TeaPair("method", "alipay.trade.cancel"),
-                    new TeaPair("app_id", _kernel.getConfig("appId")),
-                    new TeaPair("timestamp", _kernel.getTimestamp()),
-                    new TeaPair("format", "json"),
-                    new TeaPair("version", "1.0"),
-                    new TeaPair("alipay_sdk", _kernel.getSdkVersion()),
-                    new TeaPair("charset", "UTF-8"),
-                    new TeaPair("sign_type", _kernel.getConfig("signType")),
-                    new TeaPair("app_cert_sn", _kernel.getMerchantCertSN()),
-                    new TeaPair("alipay_root_cert_sn", _kernel.getAlipayRootCertSN())
+                HttpRequest request_ = new HttpRequest();
+                java.util.Map<String, String> systemParams = HttpConverter.buildMap(
+                    new HttpPair("method", "alipay.trade.cancel"),
+                    new HttpPair("app_id", _kernel.getConfig("appId")),
+                    new HttpPair("timestamp", _kernel.getTimestamp()),
+                    new HttpPair("format", "json"),
+                    new HttpPair("version", "1.0"),
+                    new HttpPair("alipay_sdk", _kernel.getSdkVersion()),
+                    new HttpPair("charset", "UTF-8"),
+                    new HttpPair("sign_type", _kernel.getConfig("signType")),
+                    new HttpPair("app_cert_sn", _kernel.getMerchantCertSN()),
+                    new HttpPair("alipay_root_cert_sn", _kernel.getAlipayRootCertSN())
                 );
-                java.util.Map<String, Object> bizParams = TeaConverter.buildMap(
-                    new TeaPair("out_trade_no", outTradeNo)
+                java.util.Map<String, Object> bizParams = HttpConverter.buildMap(
+                    new HttpPair("out_trade_no", outTradeNo)
                 );
                 java.util.Map<String, String> textParams = new java.util.HashMap<>();
                 request_.protocol = _kernel.getConfig("protocol");
                 request_.method = "POST";
                 request_.pathname = "/gateway.do";
-                request_.headers = TeaConverter.buildMap(
-                    new TeaPair("host", _kernel.getConfig("gatewayHost")),
-                    new TeaPair("content-type", "application/x-www-form-urlencoded;charset=utf-8")
+                request_.headers = HttpConverter.buildMap(
+                    new HttpPair("host", _kernel.getConfig("gatewayHost")),
+                    new HttpPair("content-type", "application/x-www-form-urlencoded;charset=utf-8")
                 );
-                request_.query = _kernel.sortMap(TeaConverter.merge(String.class,
-                    TeaConverter.buildMap(
-                        new TeaPair("sign", _kernel.sign(systemParams, bizParams, textParams, _kernel.getConfig("merchantPrivateKey")))
+                request_.query = _kernel.sortMap(HttpConverter.merge(String.class,
+                    HttpConverter.buildMap(
+                        new HttpPair("sign", _kernel.sign(systemParams, bizParams, textParams, _kernel.getConfig("merchantPrivateKey")))
                     ),
                     systemParams,
                     textParams
                 ));
-                request_.body = Tea.toReadable(_kernel.toUrlEncodedRequestBody(bizParams));
+                request_.body = Http.toReadable(_kernel.toUrlEncodedRequestBody(bizParams));
                 _lastRequest = request_;
-                TeaResponse response_ = Tea.doAction(request_, runtime_);
+                HttpResponse response_ = Http.doAction(request_, runtime_);
 
                 java.util.Map<String, Object> respMap = _kernel.readAsJson(response_, "alipay.trade.cancel");
                 if (_kernel.isCertMode()) {
                     if (_kernel.verify(respMap, _kernel.extractAlipayPublicKey(_kernel.getAlipayCertSN(respMap)))) {
-                        return TeaModel.toModel(_kernel.toRespModel(respMap), new AlipayTradeCancelResponse());
+                        return HttpModel.toModel(_kernel.toRespModel(respMap), new AlipayTradeCancelResponse());
                     }
 
                 } else {
                     if (_kernel.verify(respMap, _kernel.getConfig("alipayPublicKey"))) {
-                        return TeaModel.toModel(_kernel.toRespModel(respMap), new AlipayTradeCancelResponse());
+                        return HttpModel.toModel(_kernel.toRespModel(respMap), new AlipayTradeCancelResponse());
                     }
 
                 }
 
-                throw new TeaException(TeaConverter.buildMap(
-                    new TeaPair("message", "验签失败，请检查支付宝公钥设置是否正确。")
+                throw new HttpException(HttpConverter.buildMap(
+                    new HttpPair("message", "验签失败，请检查支付宝公钥设置是否正确。")
                 ));
             } catch (Exception e) {
-                if (Tea.isRetryable(e)) {
+                if (Http.isRetryable(e)) {
                     continue;
                 }
                 throw new RuntimeException(e);
             }
         }
 
-        throw new TeaUnretryableException(_lastRequest);
+        throw new HttpUnretryableException(_lastRequest);
     }
 
     public AlipayTradeFastpayRefundQueryResponse queryRefund(String outTradeNo, String outRequestNo) throws Exception {
-        java.util.Map<String, Object> runtime_ = TeaConverter.buildMap(
-            new TeaPair("ignoreSSL", _kernel.getConfig("ignoreSSL")),
-            new TeaPair("httpProxy", _kernel.getConfig("httpProxy")),
-            new TeaPair("connectTimeout", 15000),
-            new TeaPair("readTimeout", 15000),
-            new TeaPair("retry", TeaConverter.buildMap(
-                new TeaPair("maxAttempts", 0)
+        java.util.Map<String, Object> runtime_ = HttpConverter.buildMap(
+            new HttpPair("ignoreSSL", _kernel.getConfig("ignoreSSL")),
+            new HttpPair("httpProxy", _kernel.getConfig("httpProxy")),
+            new HttpPair("connectTimeout", 15000),
+            new HttpPair("readTimeout", 15000),
+            new HttpPair("retry", HttpConverter.buildMap(
+                new HttpPair("maxAttempts", 0)
             ))
         );
 
-        TeaRequest _lastRequest = null;
+        HttpRequest _lastRequest = null;
         long _now = System.currentTimeMillis();
         int _retryTimes = 0;
-        while (Tea.allowRetry((java.util.Map<String, Object>) runtime_.get("retry"), _retryTimes, _now)) {
+        while (Http.allowRetry((java.util.Map<String, Object>) runtime_.get("retry"), _retryTimes, _now)) {
             if (_retryTimes > 0) {
-                int backoffTime = Tea.getBackoffTime(runtime_.get("backoff"), _retryTimes);
+                int backoffTime = Http.getBackoffTime(runtime_.get("backoff"), _retryTimes);
                 if (backoffTime > 0) {
-                    Tea.sleep(backoffTime);
+                    Http.sleep(backoffTime);
                 }
             }
             _retryTimes = _retryTimes + 1;
             try {
-                TeaRequest request_ = new TeaRequest();
-                java.util.Map<String, String> systemParams = TeaConverter.buildMap(
-                    new TeaPair("method", "alipay.trade.fastpay.refund.query"),
-                    new TeaPair("app_id", _kernel.getConfig("appId")),
-                    new TeaPair("timestamp", _kernel.getTimestamp()),
-                    new TeaPair("format", "json"),
-                    new TeaPair("version", "1.0"),
-                    new TeaPair("alipay_sdk", _kernel.getSdkVersion()),
-                    new TeaPair("charset", "UTF-8"),
-                    new TeaPair("sign_type", _kernel.getConfig("signType")),
-                    new TeaPair("app_cert_sn", _kernel.getMerchantCertSN()),
-                    new TeaPair("alipay_root_cert_sn", _kernel.getAlipayRootCertSN())
+                HttpRequest request_ = new HttpRequest();
+                java.util.Map<String, String> systemParams = HttpConverter.buildMap(
+                    new HttpPair("method", "alipay.trade.fastpay.refund.query"),
+                    new HttpPair("app_id", _kernel.getConfig("appId")),
+                    new HttpPair("timestamp", _kernel.getTimestamp()),
+                    new HttpPair("format", "json"),
+                    new HttpPair("version", "1.0"),
+                    new HttpPair("alipay_sdk", _kernel.getSdkVersion()),
+                    new HttpPair("charset", "UTF-8"),
+                    new HttpPair("sign_type", _kernel.getConfig("signType")),
+                    new HttpPair("app_cert_sn", _kernel.getMerchantCertSN()),
+                    new HttpPair("alipay_root_cert_sn", _kernel.getAlipayRootCertSN())
                 );
-                java.util.Map<String, Object> bizParams = TeaConverter.buildMap(
-                    new TeaPair("out_trade_no", outTradeNo),
-                    new TeaPair("out_request_no", outRequestNo)
+                java.util.Map<String, Object> bizParams = HttpConverter.buildMap(
+                    new HttpPair("out_trade_no", outTradeNo),
+                    new HttpPair("out_request_no", outRequestNo)
                 );
                 java.util.Map<String, String> textParams = new java.util.HashMap<>();
                 request_.protocol = _kernel.getConfig("protocol");
                 request_.method = "POST";
                 request_.pathname = "/gateway.do";
-                request_.headers = TeaConverter.buildMap(
-                    new TeaPair("host", _kernel.getConfig("gatewayHost")),
-                    new TeaPair("content-type", "application/x-www-form-urlencoded;charset=utf-8")
+                request_.headers = HttpConverter.buildMap(
+                    new HttpPair("host", _kernel.getConfig("gatewayHost")),
+                    new HttpPair("content-type", "application/x-www-form-urlencoded;charset=utf-8")
                 );
-                request_.query = _kernel.sortMap(TeaConverter.merge(String.class,
-                    TeaConverter.buildMap(
-                        new TeaPair("sign", _kernel.sign(systemParams, bizParams, textParams, _kernel.getConfig("merchantPrivateKey")))
+                request_.query = _kernel.sortMap(HttpConverter.merge(String.class,
+                    HttpConverter.buildMap(
+                        new HttpPair("sign", _kernel.sign(systemParams, bizParams, textParams, _kernel.getConfig("merchantPrivateKey")))
                     ),
                     systemParams,
                     textParams
                 ));
-                request_.body = Tea.toReadable(_kernel.toUrlEncodedRequestBody(bizParams));
+                request_.body = Http.toReadable(_kernel.toUrlEncodedRequestBody(bizParams));
                 _lastRequest = request_;
-                TeaResponse response_ = Tea.doAction(request_, runtime_);
+                HttpResponse response_ = Http.doAction(request_, runtime_);
 
                 java.util.Map<String, Object> respMap = _kernel.readAsJson(response_, "alipay.trade.fastpay.refund.query");
                 if (_kernel.isCertMode()) {
                     if (_kernel.verify(respMap, _kernel.extractAlipayPublicKey(_kernel.getAlipayCertSN(respMap)))) {
-                        return TeaModel.toModel(_kernel.toRespModel(respMap), new AlipayTradeFastpayRefundQueryResponse());
+                        return HttpModel.toModel(_kernel.toRespModel(respMap), new AlipayTradeFastpayRefundQueryResponse());
                     }
 
                 } else {
                     if (_kernel.verify(respMap, _kernel.getConfig("alipayPublicKey"))) {
-                        return TeaModel.toModel(_kernel.toRespModel(respMap), new AlipayTradeFastpayRefundQueryResponse());
+                        return HttpModel.toModel(_kernel.toRespModel(respMap), new AlipayTradeFastpayRefundQueryResponse());
                     }
 
                 }
 
-                throw new TeaException(TeaConverter.buildMap(
-                    new TeaPair("message", "验签失败，请检查支付宝公钥设置是否正确。")
+                throw new HttpException(HttpConverter.buildMap(
+                    new HttpPair("message", "验签失败，请检查支付宝公钥设置是否正确。")
                 ));
             } catch (Exception e) {
-                if (Tea.isRetryable(e)) {
+                if (Http.isRetryable(e)) {
                     continue;
                 }
                 throw new RuntimeException(e);
             }
         }
 
-        throw new TeaUnretryableException(_lastRequest);
+        throw new HttpUnretryableException(_lastRequest);
     }
 
     public AlipayDataDataserviceBillDownloadurlQueryResponse downloadBill(String billType, String billDate) throws Exception {
-        java.util.Map<String, Object> runtime_ = TeaConverter.buildMap(
-            new TeaPair("ignoreSSL", _kernel.getConfig("ignoreSSL")),
-            new TeaPair("httpProxy", _kernel.getConfig("httpProxy")),
-            new TeaPair("connectTimeout", 15000),
-            new TeaPair("readTimeout", 15000),
-            new TeaPair("retry", TeaConverter.buildMap(
-                new TeaPair("maxAttempts", 0)
+        java.util.Map<String, Object> runtime_ = HttpConverter.buildMap(
+            new HttpPair("ignoreSSL", _kernel.getConfig("ignoreSSL")),
+            new HttpPair("httpProxy", _kernel.getConfig("httpProxy")),
+            new HttpPair("connectTimeout", 15000),
+            new HttpPair("readTimeout", 15000),
+            new HttpPair("retry", HttpConverter.buildMap(
+                new HttpPair("maxAttempts", 0)
             ))
         );
 
-        TeaRequest _lastRequest = null;
+        HttpRequest _lastRequest = null;
         long _now = System.currentTimeMillis();
         int _retryTimes = 0;
-        while (Tea.allowRetry((java.util.Map<String, Object>) runtime_.get("retry"), _retryTimes, _now)) {
+        while (Http.allowRetry((java.util.Map<String, Object>) runtime_.get("retry"), _retryTimes, _now)) {
             if (_retryTimes > 0) {
-                int backoffTime = Tea.getBackoffTime(runtime_.get("backoff"), _retryTimes);
+                int backoffTime = Http.getBackoffTime(runtime_.get("backoff"), _retryTimes);
                 if (backoffTime > 0) {
-                    Tea.sleep(backoffTime);
+                    Http.sleep(backoffTime);
                 }
             }
             _retryTimes = _retryTimes + 1;
             try {
-                TeaRequest request_ = new TeaRequest();
-                java.util.Map<String, String> systemParams = TeaConverter.buildMap(
-                    new TeaPair("method", "alipay.data.dataservice.bill.downloadurl.query"),
-                    new TeaPair("app_id", _kernel.getConfig("appId")),
-                    new TeaPair("timestamp", _kernel.getTimestamp()),
-                    new TeaPair("format", "json"),
-                    new TeaPair("version", "1.0"),
-                    new TeaPair("alipay_sdk", _kernel.getSdkVersion()),
-                    new TeaPair("charset", "UTF-8"),
-                    new TeaPair("sign_type", _kernel.getConfig("signType")),
-                    new TeaPair("app_cert_sn", _kernel.getMerchantCertSN()),
-                    new TeaPair("alipay_root_cert_sn", _kernel.getAlipayRootCertSN())
+                HttpRequest request_ = new HttpRequest();
+                java.util.Map<String, String> systemParams = HttpConverter.buildMap(
+                    new HttpPair("method", "alipay.data.dataservice.bill.downloadurl.query"),
+                    new HttpPair("app_id", _kernel.getConfig("appId")),
+                    new HttpPair("timestamp", _kernel.getTimestamp()),
+                    new HttpPair("format", "json"),
+                    new HttpPair("version", "1.0"),
+                    new HttpPair("alipay_sdk", _kernel.getSdkVersion()),
+                    new HttpPair("charset", "UTF-8"),
+                    new HttpPair("sign_type", _kernel.getConfig("signType")),
+                    new HttpPair("app_cert_sn", _kernel.getMerchantCertSN()),
+                    new HttpPair("alipay_root_cert_sn", _kernel.getAlipayRootCertSN())
                 );
-                java.util.Map<String, Object> bizParams = TeaConverter.buildMap(
-                    new TeaPair("bill_type", billType),
-                    new TeaPair("bill_date", billDate)
+                java.util.Map<String, Object> bizParams = HttpConverter.buildMap(
+                    new HttpPair("bill_type", billType),
+                    new HttpPair("bill_date", billDate)
                 );
                 java.util.Map<String, String> textParams = new java.util.HashMap<>();
                 request_.protocol = _kernel.getConfig("protocol");
                 request_.method = "POST";
                 request_.pathname = "/gateway.do";
-                request_.headers = TeaConverter.buildMap(
-                    new TeaPair("host", _kernel.getConfig("gatewayHost")),
-                    new TeaPair("content-type", "application/x-www-form-urlencoded;charset=utf-8")
+                request_.headers = HttpConverter.buildMap(
+                    new HttpPair("host", _kernel.getConfig("gatewayHost")),
+                    new HttpPair("content-type", "application/x-www-form-urlencoded;charset=utf-8")
                 );
-                request_.query = _kernel.sortMap(TeaConverter.merge(String.class,
-                    TeaConverter.buildMap(
-                        new TeaPair("sign", _kernel.sign(systemParams, bizParams, textParams, _kernel.getConfig("merchantPrivateKey")))
+                request_.query = _kernel.sortMap(HttpConverter.merge(String.class,
+                    HttpConverter.buildMap(
+                        new HttpPair("sign", _kernel.sign(systemParams, bizParams, textParams, _kernel.getConfig("merchantPrivateKey")))
                     ),
                     systemParams,
                     textParams
                 ));
-                request_.body = Tea.toReadable(_kernel.toUrlEncodedRequestBody(bizParams));
+                request_.body = Http.toReadable(_kernel.toUrlEncodedRequestBody(bizParams));
                 _lastRequest = request_;
-                TeaResponse response_ = Tea.doAction(request_, runtime_);
+                HttpResponse response_ = Http.doAction(request_, runtime_);
 
                 java.util.Map<String, Object> respMap = _kernel.readAsJson(response_, "alipay.data.dataservice.bill.downloadurl.query");
                 if (_kernel.isCertMode()) {
                     if (_kernel.verify(respMap, _kernel.extractAlipayPublicKey(_kernel.getAlipayCertSN(respMap)))) {
-                        return TeaModel.toModel(_kernel.toRespModel(respMap), new AlipayDataDataserviceBillDownloadurlQueryResponse());
+                        return HttpModel.toModel(_kernel.toRespModel(respMap), new AlipayDataDataserviceBillDownloadurlQueryResponse());
                     }
 
                 } else {
                     if (_kernel.verify(respMap, _kernel.getConfig("alipayPublicKey"))) {
-                        return TeaModel.toModel(_kernel.toRespModel(respMap), new AlipayDataDataserviceBillDownloadurlQueryResponse());
+                        return HttpModel.toModel(_kernel.toRespModel(respMap), new AlipayDataDataserviceBillDownloadurlQueryResponse());
                     }
 
                 }
 
-                throw new TeaException(TeaConverter.buildMap(
-                    new TeaPair("message", "验签失败，请检查支付宝公钥设置是否正确。")
+                throw new HttpException(HttpConverter.buildMap(
+                    new HttpPair("message", "验签失败，请检查支付宝公钥设置是否正确。")
                 ));
             } catch (Exception e) {
-                if (Tea.isRetryable(e)) {
+                if (Http.isRetryable(e)) {
                     continue;
                 }
                 throw new RuntimeException(e);
             }
         }
 
-        throw new TeaUnretryableException(_lastRequest);
+        throw new HttpUnretryableException(_lastRequest);
     }
 
     public Boolean verifyNotify(java.util.Map<String, String> parameters) throws Exception {

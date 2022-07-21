@@ -1,8 +1,10 @@
 package com.alipay.easysdk.kms.aliyun.models;
 
-import com.aliyun.tea.*;
+import com.basic.http.NameInMap;
+import com.basic.http.HttpModel;
+import com.basic.http.Validation;
 
-public class GetPublicKeyResponse extends TeaModel {
+public class GetPublicKeyResponse extends HttpModel {
     @NameInMap("PublicKey")
     @Validation(required = true)
     public String publicKey;
@@ -21,6 +23,6 @@ public class GetPublicKeyResponse extends TeaModel {
 
     public static GetPublicKeyResponse build(java.util.Map<String, ?> map) throws Exception {
         GetPublicKeyResponse self = new GetPublicKeyResponse();
-        return TeaModel.build(map, self);
+        return HttpModel.build(map, self);
     }
 }

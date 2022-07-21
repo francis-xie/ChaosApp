@@ -1,8 +1,10 @@
 package com.alipay.easysdk.kms.aliyun.models;
 
-import com.aliyun.tea.*;
+import com.basic.http.NameInMap;
+import com.basic.http.HttpModel;
+import com.basic.http.Validation;
 
-public class AsymmetricSignRequest extends TeaModel {
+public class AsymmetricSignRequest extends HttpModel {
     @NameInMap("KeyId")
     @Validation(required = true)
     public String keyId;
@@ -21,6 +23,6 @@ public class AsymmetricSignRequest extends TeaModel {
 
     public static AsymmetricSignRequest build(java.util.Map<String, ?> map) throws Exception {
         AsymmetricSignRequest self = new AsymmetricSignRequest();
-        return TeaModel.build(map, self);
+        return HttpModel.build(map, self);
     }
 }
