@@ -1,6 +1,8 @@
 // This file is auto-generated, don't edit it. Thanks.
 package com.alipay.easysdk.payment.common;
 
+import com.alipay.easysdk.kernel.AlipayConstants;
+import com.alipay.easysdk.kernel.util.JsonUtil;
 import com.aliyun.tea.*;
 import com.alipay.easysdk.payment.common.models.*;
 
@@ -122,12 +124,14 @@ public class Client {
             }
             _retryTimes = _retryTimes + 1;
             try {
+                String[] str = new String[]{"TRADE_SETTLE_INFO", "fund_bill_list"
+                  , "voucher_detail_list", "discount_goods_detail", "mdiscount_amount"};
                 TeaRequest request_ = new TeaRequest();
                 java.util.Map<String, String> systemParams = TeaConverter.buildMap(
                     new TeaPair("method", "alipay.trade.query"),
                     new TeaPair("app_id", _kernel.getConfig("appId")),
                     new TeaPair("timestamp", _kernel.getTimestamp()),
-                    //new TeaPair("format", "json"),
+                    new TeaPair("format", "json"),
                     new TeaPair("version", "1.0"),
                     //new TeaPair("alipay_sdk", _kernel.getSdkVersion()),
                     new TeaPair("charset", "UTF-8"),
@@ -137,7 +141,10 @@ public class Client {
                 );
                 java.util.Map<String, Object> bizParams = TeaConverter.buildMap(
                     new TeaPair("out_trade_no", outTradeNo)
+                    ,new TeaPair("query_options", str)
                 );
+                systemParams.put("biz_content", JsonUtil.toJsonString(bizParams));
+                bizParams = null;
                 java.util.Map<String, String> textParams = new java.util.HashMap<>();
                 request_.protocol = _kernel.getConfig("protocol");
                 request_.method = "POST";
@@ -153,7 +160,7 @@ public class Client {
                     systemParams,
                     textParams
                 ));
-                request_.body = Tea.toReadable(_kernel.toUrlEncodedRequestBody(bizParams));
+                //request_.body = Tea.toReadable(_kernel.toUrlEncodedRequestBody(bizParams));
                 _lastRequest = request_;
                 TeaResponse response_ = Tea.doAction(request_, runtime_);
 

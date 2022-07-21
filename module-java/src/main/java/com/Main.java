@@ -9,8 +9,21 @@ import com.alipay.easysdk.payment.common.models.AlipayTradeQueryResponse;
 /**
  * https://repo1.maven.org/maven2/com/alipay/sdk/alipay-easysdk/2.2.2/
  * https://repo1.maven.org/maven2/com/alipay/sdk/easysdk-kernel/1.0.11/
+ * https://repo1.maven.org/maven2/com/aliyun/tea/1.2.0/
  * https://github.com/alipay/alipay-easysdk/tree/master/java
- *
+ * 当面付：https://opensupport.alipay.com/support/helpcenter/99?ant_source=antsupport
+ * 多商户收款：https://opensupport.alipay.com/support/helpcenter/99/201602479724?ant_source=antsupport
+ * 设置/修改门店收款账号：https://opendocs.alipay.com/open/205/103873/
+ * 收款账号设置页面URL： https://e.alipay.com/shop/isvPayeeAccount.htm
+ * 门店管理：https://b.alipay.com/page/store-management/shop
+ * 门店管理：https://uemprod.alipay.com/baseinfo/merchantShopInfo.htm#/shop?_k=alzx7m
+ * 开放平台控制台：https://open.alipay.com/develop/manage
+ * 授权管理：https://b.alipay.com/page/sp-account-center/authorize.htm
+ * 收款账号绑定：https://b.alipay.com/page/account-manage/spBindShop.htm
+ * 代运营中心：https://p.alipay.com/page/operation/workspace
+ * 商户分账：https://opensupport.alipay.com/support/helpcenter/116?ant_source=antsupport
+ * 商户分账签约：https://mrchportalweb.alipay.com/dynlink/productSign/sign.htm?productCode=I1140300001000001870
+ * 商户分账接入：https://opensupport.alipay.com/access/integrationList/template/46/332/333/335?ant_source=antsupport
  */
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -18,7 +31,7 @@ public class Main {
         Factory.setOptions(getOptions());
         try {
             // 2. 发起API调用（以创建当面付收款二维码为例）
-            AlipayTradeQueryResponse response = Payment.Common().query("1123");
+            AlipayTradeQueryResponse response = Payment.Common().query("041041120220716220449500");
             System.out.println(response.getHttpBody());
             // 3. 处理响应或异常
             if (ResponseChecker.success(response)) {
