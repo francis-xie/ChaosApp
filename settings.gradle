@@ -1,1 +1,10 @@
-include ':app', ':module-java', ':module-groovy', ':module-library', ':module-compiler'
+include ':app'
+include ':module-java'
+//include ':module-groovy'
+//include ':module-library'
+//include ':module-compiler'
+//router
+include ':router-api'
+include ':router-compiler'
+include ':router-annotation'
+include ':router-gradle-plugin'

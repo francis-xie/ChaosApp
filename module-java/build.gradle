@@ -24,7 +24,7 @@ dependencies {
 }
 
 // 指定group，com.github.<用户名>
-group='com.github.francis-xie'
+//group='com.github.francis-xie'
 //---------------------------------------------
 // 指定编码
 tasks.withType(JavaCompile) {
